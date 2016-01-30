@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team245.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -21,7 +22,8 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser chooser;
-
+    Compressor noisy;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -30,6 +32,7 @@ public class Robot extends IterativeRobot {
 		Actuators.init();
 		Sensors.init();
         chooser = new SendableChooser();
+        noisy = new Compressor();
         
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
