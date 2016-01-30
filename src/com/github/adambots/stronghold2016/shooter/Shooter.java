@@ -10,7 +10,9 @@ public class Shooter {
 	}
 	public static boolean shoot(boolean isCocked){
 		int speed = 0;
-		if(Sensors.getCatapultLimitSwitch().get() && isCocked){
+		if(Sensors.getCatapultLimitSwitch().get() 
+				&& isCocked 
+				&& Sensors.getBoulderCanLaunchPhotoEye().get()){
 			Actuators.getCatapultMotor().set(speed);
 			isCocked = false;
 			return isCocked;
