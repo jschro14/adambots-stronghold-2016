@@ -28,6 +28,55 @@ public class Sensors {
 		armPot = new AnalogPotentiometer(0);
 		robotGyro = new AnalogGyro(0);
 	}
+
+	/**
+	 * @return the driveEncoder
+	 */
+	public static Encoder getDriveEncoder() {
+		return driveEncoder;
+	}
+
+	/**
+	 * @return the winchEncoder
+	 */
+	public static Encoder getWinchEncoder() {
+		return winchEncoder;
+	}
+
+	/**
+	 * @return the intakeArmPhotoEye
+	 */
+	public static DigitalInput getIntakeArmPhotoEye() {
+		return intakeArmPhotoEye;
+	}
+
+	/**
+	 * @return the boulderCanLaunchPhotoEye
+	 */
+	public static DigitalInput getBoulderCanLaunchPhotoEye() {
+		return boulderCanLaunchPhotoEye;
+	}
+
+	/**
+	 * @return the catapultLimitSwitch
+	 */
+	public static DigitalInput getCatapultLimitSwitch() {
+		return catapultLimitSwitch;
+	}
+
+	/**
+	 * @return the armPot
+	 */
+	public static AnalogPotentiometer getArmPot() {
+		return armPot;
+	}
+
+	/**
+	 * @return the robotGyro
+	 */
+	public static AnalogGyro getRobotGyro() {
+		return robotGyro;
+	}
 	
 	
 }
