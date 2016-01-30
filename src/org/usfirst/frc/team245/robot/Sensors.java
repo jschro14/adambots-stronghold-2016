@@ -31,11 +31,13 @@ public class Sensors {
 		robotGyro = new AnalogGyro(0);
 	}
 
+
 	public static double getStringPotArmAngle() {
 		double slope = 0;
 		double displace = armPot.get() * slope;
 		return Math.acos((Math.pow(stringPotArmDist, 2) + Math.pow(stringPotChassisDist, 2) - Math.pow(displace, 2))
 				/ (2 * stringPotArmDist * stringPotChassisDist));
 	}
+
 
 }
