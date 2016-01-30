@@ -10,6 +10,8 @@ public class Sensors {
 	private static Encoder driveEncoder;
 	private static Encoder winchEncoder;
 	private static DigitalInput intakeArmPhotoEye;
+	private static DigitalInput boulderCanLaunchPhotoEye;
+	private static DigitalInput catapultLimitSwitch;
 	//Analog
 	private static AnalogPotentiometer armPot;
 	private static AnalogGyro robotGyro;
@@ -19,9 +21,13 @@ public class Sensors {
 		driveEncoder = new  Encoder(0,0);
 		winchEncoder = new Encoder(0,0);
 		intakeArmPhotoEye = new DigitalInput(0);
+		boulderCanLaunchPhotoEye = new DigitalInput(0);
+		catapultLimitSwitch = new DigitalInput(0);
 		
 		//Analog
 		armPot = new AnalogPotentiometer(0);
 		robotGyro = new AnalogGyro(0);
 	}
+	
+	
 }
