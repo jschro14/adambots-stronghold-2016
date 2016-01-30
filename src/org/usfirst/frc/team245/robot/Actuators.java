@@ -1,107 +1,117 @@
 package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.VictorSP;
 
 public class Actuators {
+	//Motors
+	private static CANTalon rightDriveMotor1;
+	private static CANTalon rightDriveMotor2;
 	
-	private static CANTalon rightDrive1;
-	private static CANTalon rightDrive2;
+	private static CANTalon leftDriveMotor1;
+	private static CANTalon leftDriveMotor2;
 	
-	private static CANTalon leftDrive1;
-	private static CANTalon leftDrive2;
+	private static VictorSP armWinchMotor1;
+	private static VictorSP armWinchMotor2;
 	
-	private static VictorSP armWinch1;
-	private static VictorSP armWinch2;
+	private static VictorSP armAngleMotor;
 	
-	private static VictorSP armAngle;
-	
-	private static VictorSP boulderIntake;
+	private static VictorSP boulderIntakeMotor;
 	
 	private static VictorSP catapultMotor;
 	
+	//Pneumatics
+	private static Solenoid driveShiftPneumatic;
+	
+	private static Solenoid winchRatchetPneumatic;
 	
 	public static void init(){
 		//TODO: Change ID's
-		rightDrive1 = new CANTalon(0);
-		rightDrive2 = new CANTalon(0);
+		//Motors
+		rightDriveMotor1 = new CANTalon(0);
+		rightDriveMotor2 = new CANTalon(0);
 		
-		leftDrive1 = new CANTalon(0);
-		leftDrive1 = new CANTalon(0);
+		leftDriveMotor1 = new CANTalon(0);
+		leftDriveMotor1 = new CANTalon(0);
 		
-		armWinch1 = new VictorSP(0);
-		armWinch2 = new VictorSP(0);
+		armWinchMotor1 = new VictorSP(0);
+		armWinchMotor2 = new VictorSP(0);
 		
-		armAngle = new VictorSP(0);
+		armAngleMotor = new VictorSP(0);
 		
-		boulderIntake = new VictorSP(0);
+		boulderIntakeMotor = new VictorSP(0);
 		
 		catapultMotor = new VictorSP(0);
+		
+		//Solenoids
+		driveShiftPneumatic = new Solenoid(0);
+		winchRatchetPneumatic = new  Solenoid(0);
 	}
 
 
 	/**
 	 * @return the rightDrive1
 	 */
-	public static CANTalon getRightDrive1() {
-		return rightDrive1;
+	public static CANTalon getRightDriveMotor1() {
+		return rightDriveMotor1;
 	}
 
 
 	/**
 	 * @return the rightDrive2
 	 */
-	public static CANTalon getRightDrive2() {
-		return rightDrive2;
+	public static CANTalon getRightDriveMotor2() {
+		return rightDriveMotor2;
 	}
 
 
 	/**
 	 * @return the leftDrive1
 	 */
-	public static CANTalon getLeftDrive1() {
-		return leftDrive1;
+	public static CANTalon getLeftDriveMotor1() {
+		return leftDriveMotor1;
 	}
 
 
 	/**
 	 * @return the leftDrive2
 	 */
-	public static CANTalon getLeftDrive2() {
-		return leftDrive2;
+	public static CANTalon getLeftDriveMotor2() {
+		return leftDriveMotor2;
 	}
 
 
 	/**
 	 * @return the armWinch1
 	 */
-	public static VictorSP getArmWinch1() {
-		return armWinch1;
+	public static VictorSP getArmWinchMotor1() {
+		return armWinchMotor1;
 	}
 
 
 	/**
 	 * @return the armWinch2
 	 */
-	public static VictorSP getArmWinch2() {
-		return armWinch2;
+	public static VictorSP getArmWinchMotor2() {
+		return armWinchMotor2;
 	}
 
 
 	/**
 	 * @return the armAngle
 	 */
-	public static VictorSP getArmAngle() {
-		return armAngle;
+	public static VictorSP getArmAngleMotor() {
+		return armAngleMotor;
 	}
 
 
 	/**
 	 * @return the boulderIntake
 	 */
-	public static VictorSP getBoulderIntake() {
-		return boulderIntake;
+	public static VictorSP getBoulderIntakeMotor() {
+		return boulderIntakeMotor;
 	}
 
 
