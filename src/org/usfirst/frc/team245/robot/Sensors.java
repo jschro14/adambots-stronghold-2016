@@ -81,6 +81,7 @@ public class Sensors {
 	}
 	
 	public static double getStringPotArmAngle() {
+		//TODO: calibrate slope cm per degree
 		double slope = 0;
 		double displace = armPot.get() * slope;
 		return Math.acos((Math.pow(stringPotArmDist, 2) + Math.pow(stringPotChassisDist, 2) - Math.pow(displace, 2))
