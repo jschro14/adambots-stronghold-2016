@@ -16,7 +16,7 @@ public class Actuators {
 	private static VictorSP armWinchMotor1;
 	private static VictorSP armWinchMotor2;
 	
-	private static VictorSP armAngleMotor;
+	private static CANTalon armAngleMotor;
 	
 	private static VictorSP boulderIntakeMotor;
 	
@@ -39,7 +39,7 @@ public class Actuators {
 		armWinchMotor1 = new VictorSP(0);
 		armWinchMotor2 = new VictorSP(0);
 		
-		armAngleMotor = new VictorSP(0);
+		armAngleMotor = new CANTalon(0);
 		
 		boulderIntakeMotor = new VictorSP(0);
 		
@@ -102,7 +102,7 @@ public class Actuators {
 	/**
 	 * @return the armAngle
 	 */
-	public static VictorSP getArmAngleMotor() {
+	public static CANTalon getArmAngleMotor() {
 		return armAngleMotor;
 	}
 
