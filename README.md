@@ -1,2 +1,2 @@
-# DoNotExplode
-AdamBots FIRST Stronghold repository
+# Adambots Stronghold 2016
+AdamBots FIRST Stronghold robot code
