@@ -27,7 +27,8 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		
+		Actuators.init();
+		Sensors.init();
         chooser = new SendableChooser();
         
 //        chooser.addObject("My Auto", new MyAutoCommand());
