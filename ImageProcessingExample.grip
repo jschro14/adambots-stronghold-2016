@@ -3,6 +3,18 @@
     <grip:ImageFile>
       <property name="path" value="/Users/robinonsay/Downloads/RealFullField/0.jpg"/>
     </grip:ImageFile>
+    <grip:ImageFile>
+      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/14.jpg"/>
+    </grip:ImageFile>
+    <grip:ImageFile>
+      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/32.jpg"/>
+    </grip:ImageFile>
+    <grip:ImageFile>
+      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/263.jpg"/>
+    </grip:ImageFile>
+    <grip:ImageFile>
+      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/376.jpg"/>
+    </grip:ImageFile>
   </sources>
   <steps>
     <grip:Step name="CV resize">
@@ -17,26 +29,26 @@
       <grip:Input step="0" socket="4">
         <value>INTER_LINEAR</value>
       </grip:Input>
-      <grip:Output step="0" socket="0" previewed="false"/>
+      <grip:Output step="0" socket="0" previewed="true"/>
     </grip:Step>
     <grip:Step name="HSL Threshold">
       <grip:Input step="1" socket="0"/>
       <grip:Input step="1" socket="1">
         <value>
-          <double>64.74820143884891</double>
-          <double>92.90322580645159</double>
+          <double>77.6978417266187</double>
+          <double>97.48726655348048</double>
         </value>
       </grip:Input>
       <grip:Input step="1" socket="2">
         <value>
-          <double>82.55395683453237</double>
+          <double>0.0</double>
           <double>255.0</double>
         </value>
       </grip:Input>
       <grip:Input step="1" socket="3">
         <value>
-          <double>32.10431654676259</double>
-          <double>179.23599320882852</double>
+          <double>36.690647482014384</double>
+          <double>255.0</double>
         </value>
       </grip:Input>
       <grip:Output step="1" socket="0" previewed="true"/>
@@ -46,7 +58,7 @@
       <grip:Input step="2" socket="1">
         <value>false</value>
       </grip:Input>
-      <grip:Output step="2" socket="0" previewed="true"/>
+      <grip:Output step="2" socket="0" previewed="false"/>
     </grip:Step>
     <grip:Step name="Filter Contours">
       <grip:Input step="3" socket="0"/>
@@ -54,10 +66,10 @@
         <value>400.0</value>
       </grip:Input>
       <grip:Input step="3" socket="2">
-        <value>0</value>
+        <value>0.0</value>
       </grip:Input>
       <grip:Input step="3" socket="3">
-        <value>0.0</value>
+        <value>20.0</value>
       </grip:Input>
       <grip:Input step="3" socket="4">
         <value>1000</value>
@@ -103,11 +115,11 @@
   </steps>
   <connections>
     <grip:Connection>
-      <grip:Output source="0" socket="0" previewed="false"/>
+      <grip:Output source="1" socket="0" previewed="false"/>
       <grip:Input step="0" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="2" socket="0" previewed="true"/>
+      <grip:Output step="2" socket="0" previewed="false"/>
       <grip:Input step="3" socket="0"/>
     </grip:Connection>
     <grip:Connection>
@@ -115,7 +127,7 @@
       <grip:Input step="4" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="0" socket="0" previewed="false"/>
+      <grip:Output step="0" socket="0" previewed="true"/>
       <grip:Input step="1" socket="0"/>
     </grip:Connection>
     <grip:Connection>
