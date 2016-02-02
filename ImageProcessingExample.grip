@@ -1,9 +1,6 @@
 <grip:Pipeline>
   <sources>
     <grip:ImageFile>
-      <property name="path" value="/Users/robinonsay/Downloads/RealFullField/0.jpg"/>
-    </grip:ImageFile>
-    <grip:ImageFile>
       <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/14.jpg"/>
     </grip:ImageFile>
     <grip:ImageFile>
@@ -72,13 +69,13 @@
         <value>20.0</value>
       </grip:Input>
       <grip:Input step="3" socket="4">
-        <value>1000</value>
+        <value>1000.0</value>
       </grip:Input>
       <grip:Input step="3" socket="5">
-        <value>0</value>
+        <value>0.0</value>
       </grip:Input>
       <grip:Input step="3" socket="6">
-        <value>1000</value>
+        <value>1000.0</value>
       </grip:Input>
       <grip:Input step="3" socket="7">
         <value>
@@ -91,7 +88,7 @@
     <grip:Step name="Publish ContoursReport">
       <grip:Input step="4" socket="0"/>
       <grip:Input step="4" socket="1">
-        <value>myContoursReport</value>
+        <value>goalContoursReport</value>
       </grip:Input>
       <grip:Input step="4" socket="2">
         <value>true</value>
@@ -115,10 +112,6 @@
   </steps>
   <connections>
     <grip:Connection>
-      <grip:Output source="1" socket="0" previewed="false"/>
-      <grip:Input step="0" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output step="2" socket="0" previewed="false"/>
       <grip:Input step="3" socket="0"/>
     </grip:Connection>
@@ -133,6 +126,10 @@
     <grip:Connection>
       <grip:Output step="1" socket="0" previewed="true"/>
       <grip:Input step="2" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output source="1" socket="0" previewed="false"/>
+      <grip:Input step="0" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
