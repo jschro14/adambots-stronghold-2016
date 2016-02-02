@@ -2,12 +2,14 @@
 package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
+import com.github.adambots.stronghold2016.arm.Arm;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team245.robot.Gamepad;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -98,6 +100,12 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        if (Gamepad.secondary.getA()){
+        	Arm.rollers(-1);
+        }
+        if (Gamepad.secondary.getB()){
+        	Arm.rollers(1);
+        }
     }
     
     /**
