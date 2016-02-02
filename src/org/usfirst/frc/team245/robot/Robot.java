@@ -22,7 +22,7 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser chooser;
-    Compressor noisy;
+    Compressor compressor;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 		Actuators.init();
 		Sensors.init();
         chooser = new SendableChooser();
-        noisy = new Compressor();
+        compressor = new Compressor();
         
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
