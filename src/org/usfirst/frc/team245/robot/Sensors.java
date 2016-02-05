@@ -12,6 +12,8 @@ public class Sensors {
 	private static DigitalInput intakeArmPhotoEye;
 	private static DigitalInput boulderCanLaunchPhotoEye;
 	private static DigitalInput catapultLimitSwitch;
+	private static DigitalInput armMaxLimitSwitch;
+	private static DigitalInput armMinLimitSwitch;
 	// Analog
 	private static AnalogPotentiometer armPot;
 	private static AnalogGyro robotGyro;
@@ -29,6 +31,20 @@ public class Sensors {
 		// Analog
 		armPot = new AnalogPotentiometer(0, 360, 0);
 		robotGyro = new AnalogGyro(0);
+	}
+
+	/**
+	 * @return the armMaxLimitSwitch
+	 */
+	public static DigitalInput getArmMaxLimitSwitch() {
+		return armMaxLimitSwitch;
+	}
+
+	/**
+	 * @return the armMinLimitSwitch
+	 */
+	public static DigitalInput getArmMinLimitSwitch() {
+		return armMinLimitSwitch;
 	}
 
 	/**
@@ -79,14 +95,13 @@ public class Sensors {
 	public static AnalogGyro getRobotGyro() {
 		return robotGyro;
 	}
-	
+
 	public static double getStringPotArmAngle() {
-		//TODO: calibrate slope cm per degree
+		// TODO: calibrate slope cm per degree
 		double slope = 0;
 		double displace = armPot.get() * slope;
 		return Math.acos((Math.pow(stringPotArmDist, 2) + Math.pow(stringPotChassisDist, 2) - Math.pow(displace, 2))
 				/ (2 * stringPotArmDist * stringPotChassisDist));
 	}
-
 
 }
