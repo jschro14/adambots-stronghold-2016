@@ -1,13 +1,19 @@
 package com.github.adambots.stronghold2016.camera;
 
+
+import org.usfirst.frc.team245.robot.Actuators;
+
 public class AutoTarget {
 	
-	private static final double CENTER_X = 0.0;
-	private static final double CENTER_Y = 0.0;
+	private static final double TARGET_CENTER_X = 0.0;
+	private static final double MAX_CENTER_X = 0.0;
+	private static final double TARGET_CENTER_Y = 0.0;
+	private static final double MAX_CENTER_Y = 0.0;
 	private static final double FOCAL_LENGTH = 0.0;
-	private static final double TARGET_WIDTH = 0.0;
-	private static final double TARGET_HEIGHT = 0.0;
-	private static final double MAX_WIDTH_HEIGHT_RATIO = 0.0;
+	private static final double GOAL_WIDTH = 0.0;
+	private static final double GOAL_HEIGHT = 0.0;
+	private static final double THRESHOLD_RATIO = 0.0;
+	private static final double THRESHOLD_ERROR = 0.0;
 	private static int indexOfBestTarget;
 	
 	public static void init(){
@@ -15,15 +21,49 @@ public class AutoTarget {
 		ratio = Target.getHeight()[0]/Target.getWidth()[0];
 		indexOfBestTarget = 0;
 		for(int i= 0; i<Target.getHeight().length && i<Target.getWidth().length; i++){
-			if(Target.getHeight()[i]/Target.getWidth()[i]>ratio){
+			if(Target.getHeight()[i]/Target.getWidth()[i]<ratio){
 				indexOfBestTarget = i;
 			}
 		}
 	}
 	
 	public static boolean centerTargetX(){
-		double error = Math.abs(Target.getCenterX()[indexOfBestTarget] - CENTER_X);
+		double currentX = Target.getCenterX()[indexOfBestTarget];
+		double error = Math.abs(currentX - TARGET_CENTER_X);
+		error = error/MAX_CENTER_X;
+		double kP = 0.0;
+		boolean isAtTarget = THRESHOLD_ERROR >= error;
 		
-		return false;
+		if(isAtTarget){
+			Actuators.getLeftDriveMotor().set(0);
+			Actuators.getRightDriveMotor().set(0);
+		}else if(currentX >TARGET_CENTER_X){
+			Actuators.getLeftDriveMotor().set(kP*error);
+			Actuators.getRightDriveMotor().set(-kP*error);
+		}else if(currentX < TARGET_CENTER_X){
+			Actuators.getLeftDriveMotor().set(-kP*error);
+			Actuators.getRightDriveMotor().set(kP*error);
+		}
+		return isAtTarget;
+	}
+	
+	public static boolean centerTargetY(){
+		double currentY = Target.getCenterY()[indexOfBestTarget];
+		double error = Math.abs(currentY - TARGET_CENTER_Y);
+		error = error/MAX_CENTER_Y;
+		double kP = 0.0;
+		boolean isAtTarget = THRESHOLD_ERROR >= error;
+		
+		if(isAtTarget){
+			Actuators.getLeftDriveMotor().set(0);
+			Actuators.getRightDriveMotor().set(0);
+		}else if(currentY >TARGET_CENTER_Y){
+			Actuators.getLeftDriveMotor().set(kP*error);
+			Actuators.getRightDriveMotor().set(kP*error);
+		}else if(currentY < TARGET_CENTER_Y){
+			Actuators.getLeftDriveMotor().set(-kP*error);
+			Actuators.getRightDriveMotor().set(-kP*error);
+		}
+		return isAtTarget;
 	}
 }

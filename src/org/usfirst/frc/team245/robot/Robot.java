@@ -106,17 +106,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-<<<<<<< HEAD
-//		if (Gamepad.secondary.getA()) {
-//			Arm.rollers(-1);
-//		}
-//		if (Gamepad.secondary.getB()) {
-//			Arm.rollers(1);
-//		}
-//
-//		Arm.winch(Gamepad.secondary.getRightY());
-		
-=======
+
 		Arm.moveArm(Gamepad.secondary.getRightY());
 
 		if (Gamepad.secondary.getA()) {
@@ -127,7 +117,7 @@ public class Robot extends IterativeRobot {
 		}
 
 		Arm.climb(Gamepad.secondary.getX());
->>>>>>> Adambots-245/master
+
 	}
 
 	/**
