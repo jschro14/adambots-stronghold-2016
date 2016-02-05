@@ -100,6 +100,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
+		Arm.moveArm(Gamepad.secondary.getRightY());
+
 		if (Gamepad.secondary.getA()) {
 			Arm.rollers(-1);
 		}
@@ -107,7 +109,7 @@ public class Robot extends IterativeRobot {
 			Arm.rollers(1);
 		}
 
-		Arm.winch(Gamepad.secondary.getRightY());
+		Arm.climb(Gamepad.secondary.getX());
 	}
 
 	/**
