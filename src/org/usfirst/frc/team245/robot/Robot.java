@@ -97,6 +97,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		Arm.init();
 	}
 
 	/**
@@ -105,6 +106,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
+<<<<<<< HEAD
 //		if (Gamepad.secondary.getA()) {
 //			Arm.rollers(-1);
 //		}
@@ -114,6 +116,18 @@ public class Robot extends IterativeRobot {
 //
 //		Arm.winch(Gamepad.secondary.getRightY());
 		
+=======
+		Arm.moveArm(Gamepad.secondary.getRightY());
+
+		if (Gamepad.secondary.getA()) {
+			Arm.rollers(-1);
+		}
+		if (Gamepad.secondary.getB()) {
+			Arm.rollers(1);
+		}
+
+		Arm.climb(Gamepad.secondary.getX());
+>>>>>>> Adambots-245/master
 	}
 
 	/**
