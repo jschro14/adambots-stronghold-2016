@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 public class Actuators {
 	// Motors
-	private static CANTalon rightDriveMotor1;
+	private static CANTalon rightDriveMotor;
 	private static CANTalon rightDriveMotor2;
 
-	private static CANTalon leftDriveMotor1;
+	private static CANTalon leftDriveMotor;
 	private static CANTalon leftDriveMotor2;
 
 	private static VictorSP armWinchMotor1;
@@ -29,15 +29,15 @@ public class Actuators {
 	public static void init() {
 		// TODO: Change ID's
 		// Motors
-		rightDriveMotor1 = new CANTalon(0);
+		rightDriveMotor = new CANTalon(0);
 		rightDriveMotor2 = new CANTalon(0);
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
-		rightDriveMotor2.set(rightDriveMotor1.getDeviceID());
+		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
 
-		leftDriveMotor1 = new CANTalon(0);
+		leftDriveMotor = new CANTalon(0);
 		leftDriveMotor2 = new CANTalon(0);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
-		leftDriveMotor2.set(leftDriveMotor1.getDeviceID());
+		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
 
 		armWinchMotor1 = new VictorSP(0);
 		armWinchMotor2 = new VictorSP(0);
@@ -55,32 +55,32 @@ public class Actuators {
 	}
 
 	/**
-	 * @return the rightDrive1
+	 * @return the rightDrive
 	 */
-	public static CANTalon getRightDriveMotor1() {
-		return rightDriveMotor1;
+	public static CANTalon getRightDriveMotor() {
+		return rightDriveMotor;
 	}
 
-	/**
-	 * @return the rightDrive2
-	 */
-	public static CANTalon getRightDriveMotor2() {
-		return rightDriveMotor2;
-	}
+//	/**
+//	 * @return the rightDrive2
+//	 */
+//	public static CANTalon getRightDriveMotor2() {
+//		return rightDriveMotor2;
+//	}
 
 	/**
-	 * @return the leftDrive1
+	 * @return the leftDrive
 	 */
-	public static CANTalon getLeftDriveMotor1() {
-		return leftDriveMotor1;
+	public static CANTalon getLeftDriveMotor() {
+		return leftDriveMotor;
 	}
 
-	/**
-	 * @return the leftDrive2
-	 */
-	public static CANTalon getLeftDriveMotor2() {
-		return leftDriveMotor2;
-	}
+//	/**
+//	 * @return the leftDrive2
+//	 */
+//	public static CANTalon getLeftDriveMotor2() {
+//		return leftDriveMotor2;
+//	}
 
 	/**
 	 * @return the armWinch1
