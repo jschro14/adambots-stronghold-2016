@@ -125,6 +125,11 @@ public class Actuators {
 	public static VictorSP getCatapultMotor() {
 		return catapultMotor;
 	}
-	
+	public static Solenoid getDriveShiftPneumatic() {
+		return driveShiftPneumatic;
+	}
+	public static Solenoid getWinchRatchetPneumatic() {
+		return winchRatchetPneumatic;
+	}
 	
 }
