@@ -2,7 +2,11 @@ package com.github.adambots.stronghold2016.camera;
 
 
 import org.usfirst.frc.team245.robot.Actuators;
-
+/**
+ * 
+ * @author Robin Onsay
+ *
+ */
 public class AutoTarget {
 	
 	private static final double TARGET_CENTER_X = 0.0;
@@ -15,7 +19,9 @@ public class AutoTarget {
 	private static final double THRESHOLD_RATIO = 0.0;
 	private static final double THRESHOLD_ERROR = 0.0;
 	private static int indexOfBestTarget;
-	
+	/**
+	 * Initializes all AutoTarget instance variables
+	 */
 	public static void init(){
 		double ratio = 0;
 		ratio = Target.getHeight()[0]/Target.getWidth()[0];
@@ -27,6 +33,10 @@ public class AutoTarget {
 		}
 	}
 	
+	/**
+	 * centers robot by rotating until it reaches target
+	 * @return if it reached the Target rotationally
+	 */
 	public static boolean centerTargetX(){
 		double currentX = Target.getCenterX()[indexOfBestTarget];
 		double error = Math.abs(currentX - TARGET_CENTER_X);
@@ -46,7 +56,10 @@ public class AutoTarget {
 		}
 		return isAtTarget;
 	}
-	
+	/**
+	 * Centers robot if robot is too far or too close
+	 * @return if robot has reached the target
+	 */
 	public static boolean centerTargetY(){
 		double currentY = Target.getCenterY()[indexOfBestTarget];
 		double error = Math.abs(currentY - TARGET_CENTER_Y);
