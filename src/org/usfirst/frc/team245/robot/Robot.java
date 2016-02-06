@@ -3,6 +3,8 @@ package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
+import com.github.adambots.stronghold2016.camera.Target;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -36,6 +38,7 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		Target.init();
 	}
 
 	/**
@@ -49,6 +52,9 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		for(double area: Target.getArea()){
+			System.out.println("The area is "+area);
+		}
 	}
 
 	/**
@@ -100,6 +106,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
+
 		Arm.moveArm(Gamepad.secondary.getRightY());
 
 		if (Gamepad.secondary.getA()) {
@@ -110,6 +117,7 @@ public class Robot extends IterativeRobot {
 		}
 
 		Arm.climb(Gamepad.secondary.getX());
+
 	}
 
 	/**
