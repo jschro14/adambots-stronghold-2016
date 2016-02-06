@@ -10,8 +10,13 @@ public class Arm {
 
 	private static boolean released = false;
 
-	public static void rollers(double speed) {
-		Actuators.getBoulderIntakeMotor().set(speed);
+	public static void rollers(boolean intake, boolean putout) {
+		if (intake == true) {
+			Actuators.getBoulderIntakeMotor().set(1);
+		}
+		if (putout == true){
+			Actuators.getBoulderIntakeMotor().set(-1);
+		}
 	}
 
 	public static void moveArm(double speed) {
