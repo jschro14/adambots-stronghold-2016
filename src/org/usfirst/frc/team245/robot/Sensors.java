@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class Sensors {
 	// Digital
-	private static Encoder driveEncoder;
+	private static Encoder driveEncoder1;
+	private static Encoder driveEncoder2;
 	private static Encoder winchEncoder;
 	private static DigitalInput intakeArmPhotoEye;
 	private static DigitalInput boulderCanLaunchPhotoEye;
@@ -22,7 +23,8 @@ public class Sensors {
 
 	public static void init() {
 		// Digital
-		driveEncoder = new Encoder(0, 0);
+		driveEncoder1 = new Encoder(0, 0);
+		driveEncoder2 = new Encoder(0, 0);
 		winchEncoder = new Encoder(0, 0);
 		intakeArmPhotoEye = new DigitalInput(0);
 		boulderCanLaunchPhotoEye = new DigitalInput(0);
