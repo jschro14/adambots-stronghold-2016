@@ -22,21 +22,23 @@ public class Arm {
 	public static void moveArm(double speed) {
 		if (Sensors.getArmMinLimitSwitch().get() == false && Sensors.getArmMaxLimitSwitch().get() == false) {
 			Actuators.getArmAngleMotor().set(speed);
+		}else{
+			Actuators.getArmAngleMotor().set(0);
 		}
 	}
 
 	public static void climb(boolean button) {
-		if (released == false && button) {
+		if (!released && button) {
 			Actuators.getWinchRatchetPneumatic().set(true);
+			Actuators.getArmWinchMotor1().set(Actuators.MAX_MOTOR_SPEED);
+			Actuators.getArmWinchMotor2().set(Actuators.MAX_MOTOR_SPEED);
 			released = true;
-		}
-		if (released && button) {
-			Actuators.getArmWinchMotor1().set(1);
-			Actuators.getArmWinchMotor2().set(1);
-		}
-		if (released && button == false) {
-			Actuators.getArmWinchMotor1().set(0);
-			Actuators.getArmWinchMotor2().set(0);
+		}else if (released && button) {
+			Actuators.getArmWinchMotor1().set(Actuators.MAX_MOTOR_SPEED);
+			Actuators.getArmWinchMotor2().set(Actuators.MAX_MOTOR_SPEED);
+		}else{
+			Actuators.getArmWinchMotor1().set(Actuators.STOP_MOTOR);
+			Actuators.getArmWinchMotor2().set(Actuators.STOP_MOTOR);
 			Actuators.getWinchRatchetPneumatic().set(false);
 		}
 	}
