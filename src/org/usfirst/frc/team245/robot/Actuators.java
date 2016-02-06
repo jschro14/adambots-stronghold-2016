@@ -1,10 +1,16 @@
 package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
 public class Actuators {
+	//constants
+	private static final double ARM_ANGLE_KP = 1;
+	private static final double ARM_ANGLE_KI = 1;
+	private static final double ARM_ANGLE_KD = 1;
+	
 	// Motors
 	private static CANTalon rightDriveMotor;
 	private static CANTalon rightDriveMotor2;
@@ -44,6 +50,11 @@ public class Actuators {
 		armWinchMotor2.setInverted(true);
 
 		armAngleMotor = new CANTalon(0);
+		armAngleMotor.setP(ARM_ANGLE_KP);
+		armAngleMotor.setI(ARM_ANGLE_KI);
+		armAngleMotor.setD(ARM_ANGLE_KD);
+		//TODO: Use string pot with CANTalon
+		
 
 		boulderIntakeMotor = new VictorSP(0);
 

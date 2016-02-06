@@ -4,6 +4,11 @@ import org.usfirst.frc.team245.robot.Gamepad;
 import org.usfirst.frc.team245.robot.Actuators;
 
 public class Drive {
+	
+	public static void init(){
+		
+	}
+	
 	public static void drive(double speed, double turningSpeed) {
 		Actuators.getRightDriveMotor().set(speed);
 		Actuators.getLeftDriveMotor().set(speed);
