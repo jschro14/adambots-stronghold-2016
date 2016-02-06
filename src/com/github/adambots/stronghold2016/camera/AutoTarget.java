@@ -3,6 +3,8 @@ package com.github.adambots.stronghold2016.camera;
 
 import org.usfirst.frc.team245.robot.Actuators;
 
+import com.github.adambots.stronghold2016.drive.Drive;
+
 /**
  * 
  * @author Robin Onsay
@@ -52,16 +54,13 @@ public class AutoTarget {
 			boolean isAtTarget = isAtTargetX && isAtTargetY;
 			
 			if(isAtTarget){
-				Actuators.getRightDriveMotor().set(Actuators.STOP_MOTOR);
-				Actuators.getLeftDriveMotor().set(Actuators.STOP_MOTOR);
+				Drive.drive(Actuators.STOP_MOTOR);
 			}else if(isAtTargetX){
 				double speed = kPY*errorY;
-				Actuators.getRightDriveMotor().set(speed);
-				Actuators.getLeftDriveMotor().set(speed);
+				Drive.drive(speed);
 			}else if(isAtTargetY){
 				double speed = kPX*errorX;
-				Actuators.getRightDriveMotor().set(-speed);
-				Actuators.getLeftDriveMotor().set(speed);
+				Drive.drive(0, speed);
 			}else{
 //TODO: Test if you can adjust both x & y
 //				double speedX = kPX*errorX*1/2;
@@ -69,10 +68,7 @@ public class AutoTarget {
 //				Actuators.getRightDriveMotor().set(speedY-speedX);
 //				Actuators.getLeftDriveMotor().set(speedY+speedX);
 				double speed = kPX*errorX;
-				Actuators.getRightDriveMotor().set(-speed);
-				Actuators.getLeftDriveMotor().set(speed);
-				
-				
+				Drive.drive(0, speed);
 			}
 			
 			return isAtTarget;
