@@ -53,8 +53,8 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		for(double area: Target.getArea()){
-			System.out.println("The area is "+area);
+		for (double area : Target.getArea()) {
+			System.out.println("The area is " + area);
 		}
 	}
 
@@ -107,13 +107,12 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-
 		Arm.moveArm(Gamepad.secondary.getRightY());
 
 		Arm.rollers(Gamepad.primary.getA(), Gamepad.primary.getB());
 
 		Arm.climb(Gamepad.secondary.getX());
-		
+
 		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getRightX());
 
 	}

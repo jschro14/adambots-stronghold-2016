@@ -61,12 +61,12 @@ public class Actuators {
 		return rightDriveMotor;
 	}
 
-//	/**
-//	 * @return the rightDrive2
-//	 */
-//	public static CANTalon getRightDriveMotor2() {
-//		return rightDriveMotor2;
-//	}
+	// /**
+	// * @return the rightDrive2
+	// */
+	// public static CANTalon getRightDriveMotor2() {
+	// return rightDriveMotor2;
+	// }
 
 	/**
 	 * @return the leftDrive
@@ -75,12 +75,12 @@ public class Actuators {
 		return leftDriveMotor;
 	}
 
-//	/**
-//	 * @return the leftDrive2
-//	 */
-//	public static CANTalon getLeftDriveMotor2() {
-//		return leftDriveMotor2;
-//	}
+	// /**
+	// * @return the leftDrive2
+	// */
+	// public static CANTalon getLeftDriveMotor2() {
+	// return leftDriveMotor2;
+	// }
 
 	/**
 	 * @return the armWinch1
