@@ -3,8 +3,10 @@ package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
+import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
 import com.github.adambots.stronghold2016.drive.Drive;
+import com.github.adambots.stronghold2016.shooter.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -34,12 +36,17 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		Actuators.init();
 		Sensors.init();
+		Shooter.init();
+		Drive.init();//does not have anything
+		Target.init();//Using Grip
+		AutoTarget.init();//does not contain anything
 		chooser = new SendableChooser();
 		compressor = new Compressor();
 
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		Target.init();
+		
 	}
 
 	/**
@@ -52,10 +59,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-		for (double area : Target.getArea()) {
-			System.out.println("The area is " + area);
-		}
+		
 	}
 
 	/**
@@ -105,6 +109,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
 
 		Arm.moveArm(Gamepad.secondary.getRightY());
@@ -114,6 +119,18 @@ public class Robot extends IterativeRobot {
 		Arm.climb(Gamepad.secondary.getX());
 
 		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getRightX());
+
+		
+		if(Gamepad.primary.getRB()){
+			//if using PID in CANTalons
+			Shooter.loadShooter();
+			//if using PID class on roborio
+			Shooter.loadShooter(0);
+		}else{
+			Shooter.stopLoadShooter();
+		}
+		
+		
 
 	}
 
