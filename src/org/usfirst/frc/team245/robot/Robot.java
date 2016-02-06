@@ -3,6 +3,11 @@ package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
+import com.github.adambots.stronghold2016.camera.AutoTarget;
+import com.github.adambots.stronghold2016.camera.Target;
+import com.github.adambots.stronghold2016.drive.Drive;
+import com.github.adambots.stronghold2016.shooter.Shooter;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,11 +36,17 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		Actuators.init();
 		Sensors.init();
+		Shooter.init();
+		Drive.init();//does not have anything
+		Target.init();//Using Grip
+		AutoTarget.init();//does not contain anything
 		chooser = new SendableChooser();
 		compressor = new Compressor();
 
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
 	}
 
 	/**
@@ -48,7 +59,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+		
 	}
 
 	/**
@@ -91,22 +102,36 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		Arm.init();
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
 
-		if (Gamepad.secondary.getA()) {
-			Arm.rollers(-1);
-		}
-		if (Gamepad.secondary.getB()) {
-			Arm.rollers(1);
-		}
+		Arm.moveArm(Gamepad.secondary.getRightY());
 
-		Arm.winch(Gamepad.secondary.getRightY());
+		Arm.rollers(Gamepad.primary.getA(), Gamepad.primary.getB());
+
+		Arm.climb(Gamepad.secondary.getX());
+
+		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getRightX());
+
+		
+		if(Gamepad.primary.getRB()){
+			//if using PID in CANTalons
+			Shooter.loadShooter();
+			//if using PID class on roborio
+			Shooter.loadShooter(0);
+		}else{
+			Shooter.stopLoadShooter();
+		}
+		
+		
+
 	}
 
 	/**
