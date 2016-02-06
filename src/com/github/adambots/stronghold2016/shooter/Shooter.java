@@ -22,7 +22,7 @@ public class Shooter {
 	}
 	
 	public static void stopLoadShooter(){
-		Actuators.getArmAngleMotor().set(0);
+		Actuators.getArmAngleMotor().set(Actuators.STOP_MOTOR);
 		Actuators.getArmAngleMotor().disable();
 	}
 	
@@ -43,7 +43,7 @@ public class Shooter {
 		
 		if(Sensors.getBoulderCanLaunchPhotoEye().get()){
 			Actuators.getArmAngleMotor().disable();
-			Actuators.getBoulderIntakeMotor().set(0);;
+			Actuators.getBoulderIntakeMotor().set(Actuators.STOP_MOTOR);
 		}
 	}
 	
@@ -64,7 +64,7 @@ public class Shooter {
 		
 		if(Sensors.getBoulderCanLaunchPhotoEye().get()){
 			armPID.disable();
-			Actuators.getBoulderIntakeMotor().set(0);;
+			Actuators.getBoulderIntakeMotor().set(Actuators.STOP_MOTOR);;
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class Shooter {
 		// if limit switch is pressed
 		if (Sensors.getCatapultLimitSwitch().get()) {
 			// stop motor, and catapult is cocked
-			Actuators.getCatapultMotor().set(0);
+			Actuators.getCatapultMotor().set(Actuators.STOP_MOTOR);
 			isCocked = true;
 			return isCocked;
 		}

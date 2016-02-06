@@ -52,8 +52,8 @@ public class AutoTarget {
 			boolean isAtTarget = isAtTargetX && isAtTargetY;
 			
 			if(isAtTarget){
-				Actuators.getRightDriveMotor().set(0);
-				Actuators.getLeftDriveMotor().set(0);
+				Actuators.getRightDriveMotor().set(Actuators.STOP_MOTOR);
+				Actuators.getLeftDriveMotor().set(Actuators.STOP_MOTOR);
 			}else if(isAtTargetX){
 				double speed = kPY*errorY;
 				Actuators.getRightDriveMotor().set(speed);

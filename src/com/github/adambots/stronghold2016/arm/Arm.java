@@ -12,10 +12,10 @@ public class Arm {
 
 	public static void rollers(boolean intake, boolean putout) {
 		if (intake == true) {
-			Actuators.getBoulderIntakeMotor().set(1);
+			Actuators.getBoulderIntakeMotor().set(Actuators.MAX_MOTOR_SPEED);
 		}
 		if (putout == true) {
-			Actuators.getBoulderIntakeMotor().set(-1);
+			Actuators.getBoulderIntakeMotor().set(Actuators.MIN_MOTOR_SPEED);
 		}
 	}
 
@@ -23,7 +23,7 @@ public class Arm {
 		if (Sensors.getArmMinLimitSwitch().get() == false && Sensors.getArmMaxLimitSwitch().get() == false) {
 			Actuators.getArmAngleMotor().set(speed);
 		}else{
-			Actuators.getArmAngleMotor().set(0);
+			Actuators.getArmAngleMotor().set(Actuators.STOP_MOTOR);
 		}
 	}
 
