@@ -38,11 +38,13 @@ public class Actuators {
 		rightDriveMotor = new CANTalon(0);
 		rightDriveMotor2 = new CANTalon(0);
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		rightDriveMotor2.setInverted(true);
 		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
 
 		leftDriveMotor = new CANTalon(0);
 		leftDriveMotor2 = new CANTalon(0);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		leftDriveMotor2.setInverted(true);
 		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
 
 		armWinchMotor1 = new VictorSP(0);
