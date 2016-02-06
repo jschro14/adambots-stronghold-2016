@@ -109,6 +109,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
 
 		Arm.moveArm(Gamepad.secondary.getRightY());
@@ -118,10 +119,18 @@ public class Robot extends IterativeRobot {
 		Arm.climb(Gamepad.secondary.getX());
 
 		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getRightX());
+
 		
 		if(Gamepad.primary.getRB()){
+			//if using PID in CANTalons
 			Shooter.loadShooter();
+			//if using PID class on roborio
+			Shooter.loadShooter(0);
+		}else{
+			Shooter.stopLoadShooter();
 		}
+		
+		
 
 	}
 
