@@ -21,7 +21,11 @@ public class Shooter {
 						Actuators.getArmAngleMotor());
 	}
 	
-
+	public static void stopLoadShooter(){
+		Actuators.getArmAngleMotor().set(0);
+		Actuators.getArmAngleMotor().disable();
+	}
+	
 	/**
 	 * Loads shooter using CANTalon PID
 	 */
@@ -38,7 +42,7 @@ public class Shooter {
 		}
 		
 		if(Sensors.getBoulderCanLaunchPhotoEye().get()){
-			armPID.disable();
+			Actuators.getArmAngleMotor().disable();
 			Actuators.getBoulderIntakeMotor().set(0);;
 		}
 	}
