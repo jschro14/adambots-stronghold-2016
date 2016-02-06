@@ -10,6 +10,9 @@ public class Actuators {
 	private static final double ARM_ANGLE_KP = 1;
 	private static final double ARM_ANGLE_KI = 1;
 	private static final double ARM_ANGLE_KD = 1;
+	public static final double MAX_MOTOR_SPEED = 1;
+	public static final double MIN_MOTOR_SPEED = -1;
+	public static final double STOP_MOTOR = 0;
 	
 	// Motors
 	private static CANTalon rightDriveMotor;
