@@ -31,42 +31,53 @@ public class AutoTarget {
 		ratio = Target.getHeight()[0]/Target.getWidth()[0];
 		int indexOfBestTarget = 0;
 		for(int i= 0; i<Target.getHeight().length && i<Target.getWidth().length; i++){
-			if(Target.getHeight()[i]/Target.getWidth()[i]<ratio){
+			if(Target.getHeight()[i]/Target.getWidth()[i]<=ratio){
+				ratio = Target.getHeight()[i]/Target.getWidth()[i];
 				indexOfBestTarget = i;
 			}
 		}
-	
-		
-		double currentX = Target.getCenterX()[indexOfBestTarget];
-		double errorX = TARGET_CENTER_X - currentX;
-		errorX /= MAX_CENTER_X;
-		double kPX = 0.0;
-		boolean isAtTargetX = THRESHOLD_ERROR >= errorX;
-		
-		double currentY = Target.getCenterY()[indexOfBestTarget];
-		double errorY = TARGET_CENTER_Y-currentY;
-		errorY /= MAX_CENTER_Y;
-		double kPY = 0.0;
-		boolean isAtTargetY = THRESHOLD_ERROR >= errorY;
-		
-		boolean isAtTarget = isAtTargetX && isAtTargetY;
-		
-		if(isAtTarget){
-			Actuators.getRightDriveMotor().set(0);
-			Actuators.getLeftDriveMotor().set(0);
-		}else if(isAtTargetX){
-			double speed = kPY*errorY;
-			Actuators.getRightDriveMotor().set(speed);
-			Actuators.getLeftDriveMotor().set(speed);
-		}else if(isAtTargetY){
-			double speed = kPX*errorX;
-			Actuators.getRightDriveMotor().set(-speed);
-			Actuators.getLeftDriveMotor().set(speed);
-		}else{
+		if(!(THRESHOLD_RATIO < ratio)){
+			double currentX = Target.getCenterX()[indexOfBestTarget];
+			double errorX = TARGET_CENTER_X - currentX;
+			errorX /= MAX_CENTER_X;
+			double kPX = 1;
+			boolean isAtTargetX = THRESHOLD_ERROR >= errorX;
 			
+			double currentY = Target.getCenterY()[indexOfBestTarget];
+			double errorY = -TARGET_CENTER_Y + currentY;
+			errorY /= MAX_CENTER_Y;
+			double kPY = 1;
+			boolean isAtTargetY = THRESHOLD_ERROR >= errorY;
+			
+			boolean isAtTarget = isAtTargetX && isAtTargetY;
+			
+			if(isAtTarget){
+				Actuators.getRightDriveMotor().set(0);
+				Actuators.getLeftDriveMotor().set(0);
+			}else if(isAtTargetX){
+				double speed = kPY*errorY;
+				Actuators.getRightDriveMotor().set(speed);
+				Actuators.getLeftDriveMotor().set(speed);
+			}else if(isAtTargetY){
+				double speed = kPX*errorX;
+				Actuators.getRightDriveMotor().set(-speed);
+				Actuators.getLeftDriveMotor().set(speed);
+			}else{
+//TODO: Test if you can adjust both x & y
+//				double speedX = kPX*errorX*1/2;
+//				double speedY = kPY*errorY*1/2;
+//				Actuators.getRightDriveMotor().set(speedY-speedX);
+//				Actuators.getLeftDriveMotor().set(speedY+speedX);
+				double speed = kPX*errorX;
+				Actuators.getRightDriveMotor().set(-speed);
+				Actuators.getLeftDriveMotor().set(speed);
+				
+				
+			}
+			
+			return isAtTarget;
 		}
-		
-		return isAtTarget;
+		return false;
 	}
 	/**
 	 * centers robot by rotating until it reaches target
