@@ -14,7 +14,7 @@ public class Arm {
 		if (intake == true) {
 			Actuators.getBoulderIntakeMotor().set(1);
 		}
-		if (putout == true){
+		if (putout == true) {
 			Actuators.getBoulderIntakeMotor().set(-1);
 		}
 	}

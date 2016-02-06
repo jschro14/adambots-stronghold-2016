@@ -74,7 +74,8 @@ public class Gamepad {
 	/**
 	 * Creates a new Joystick instance on the correct driver port.
 	 *
-	 * @param port The joystick port number.
+	 * @param port
+	 *            The joystick port number.
 	 */
 	private Gamepad(int port) {
 		joy = new Joystick(port);
