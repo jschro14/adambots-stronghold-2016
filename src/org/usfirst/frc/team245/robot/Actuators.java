@@ -38,36 +38,36 @@ public class Actuators {
 	public static void init() {
 		// TODO: Change ID's
 		// Motors
-		rightDriveMotor = new CANTalon(0);
-		rightDriveMotor2 = new CANTalon(0);
+		rightDriveMotor = new CANTalon(1);
+		rightDriveMotor2 = new CANTalon(2);
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightDriveMotor2.setInverted(true);
 		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
 
 		leftDriveMotor = new CANTalon(0);
-		leftDriveMotor2 = new CANTalon(0);
+		leftDriveMotor2 = new CANTalon(3);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftDriveMotor2.setInverted(true);
 		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
 
-		armWinchMotor1 = new VictorSP(0);
-		armWinchMotor2 = new VictorSP(0);
+		armWinchMotor1 = new VictorSP(4);
+		armWinchMotor2 = new VictorSP(5);
 		armWinchMotor2.setInverted(true);
 
-		armAngleMotor = new CANTalon(0);
+		armAngleMotor = new CANTalon(6);
 		armAngleMotor.setP(ARM_ANGLE_KP);
 		armAngleMotor.setI(ARM_ANGLE_KI);
 		armAngleMotor.setD(ARM_ANGLE_KD);
 		//TODO: Use string pot with CANTalon
 		
 
-		boulderIntakeMotor = new VictorSP(0);
+		boulderIntakeMotor = new VictorSP(7);
 
-		catapultMotor = new VictorSP(0);
+		catapultMotor = new VictorSP(8);
 
 		// Solenoids
 		driveShiftPneumatic = new Solenoid(0);
-		winchRatchetPneumatic = new Solenoid(0);
+		winchRatchetPneumatic = new Solenoid(1);
 	}
 
 	/**
