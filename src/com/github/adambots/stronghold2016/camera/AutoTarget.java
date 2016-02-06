@@ -38,16 +38,32 @@ public class AutoTarget {
 	
 		
 		double currentX = Target.getCenterX()[indexOfBestTarget];
-		double errorX = Math.abs(currentX - TARGET_CENTER_X);
+		double errorX = TARGET_CENTER_X - currentX;
 		errorX /= MAX_CENTER_X;
 		double kPX = 0.0;
 		boolean isAtTargetX = THRESHOLD_ERROR >= errorX;
 		
 		double currentY = Target.getCenterY()[indexOfBestTarget];
-		double errorY = Math.abs(currentY - TARGET_CENTER_X);
+		double errorY = TARGET_CENTER_Y-currentY;
 		errorY /= MAX_CENTER_Y;
 		double kPY = 0.0;
 		boolean isAtTargetY = THRESHOLD_ERROR >= errorY;
+		
+		if(isAtTargetX && isAtTargetY){
+			Actuators.getRightDriveMotor().set(0);
+			Actuators.getLeftDriveMotor().set(0);
+			return true;
+		}else if(isAtTargetX){
+			double speed = kPY*errorY;
+			Actuators.getRightDriveMotor().set(speed);
+			Actuators.getLeftDriveMotor().set(speed);
+		}else if(isAtTargetY){
+			double speed = kPX*errorX;
+			Actuators.getRightDriveMotor().set(-speed);
+			Actuators.getLeftDriveMotor().set(speed);
+		}else{
+			
+		}
 		
 		
 	}
