@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
+/**
+ * The target returned from GRIP
+ *
+ */
 public class Target {
 	private final static String[] GRIP_ARGS = new String[] {
 	        "/usr/local/frc/JRE/bin/java", "-jar",
@@ -18,6 +22,9 @@ public class Target {
 	private static double[] height;
 	private static double[] solidity;
 	
+	/**
+	 * Sets grip variables
+	 */
 	public static void init(){
 		/* Run GRIP in a new process */
         try {
