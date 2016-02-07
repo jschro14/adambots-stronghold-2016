@@ -4,12 +4,28 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
-
+/**
+ * All of our robot's actuators including motors and pneumatics
+ */
 public class Actuators {
-	//constants
+	//CONSTANTS
+	
+	//The PID constants for the arm
 	private static final double ARM_ANGLE_KP = 1;
 	private static final double ARM_ANGLE_KI = 1;
 	private static final double ARM_ANGLE_KD = 1;
+	
+	//The PID constants for right drive motors
+	private static final double RIGHT_DRIVE_KP = 1;
+	private static final double RIGHT_DRIVE_KI = 1;
+	private static final double RIGHT_DRIVE_KD = 1;
+	
+	//The PID constants for left drive motors
+	private static final double LEFT_DRIVE_KP = 1;
+	private static final double LEFT_DRIVE_KI = 1;
+	private static final double LEFT_DRIVE_KD = 1;
+	
+	//Maximum and minimum motor speed constants and constant to stop motor
 	public static final double MAX_MOTOR_SPEED = 1;
 	public static final double MIN_MOTOR_SPEED = -1;
 	public static final double STOP_MOTOR = 0;
@@ -35,6 +51,9 @@ public class Actuators {
 
 	private static Solenoid winchRatchetPneumatic;
 
+	/**
+	 * Initializes all actuators
+	 */
 	public static void init() {
 		// TODO: Change ID's
 		// Motors

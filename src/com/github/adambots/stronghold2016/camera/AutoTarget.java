@@ -6,8 +6,7 @@ import org.usfirst.frc.team245.robot.Actuators;
 import com.github.adambots.stronghold2016.drive.Drive;
 
 /**
- * 
- * @author Robin Onsay
+ * All Auto-targeting code
  *
  */
 public class AutoTarget {
@@ -28,6 +27,10 @@ public class AutoTarget {
 	public static void init(){
 		
 	}
+	/**
+	 * Centers target based on distance and rotation, not on translational-z
+	 * @return whether robot is centered or not
+	 */
 	public static boolean centerTarget(){
 		double ratio = 0;
 		ratio = Target.getHeight()[0]/Target.getWidth()[0];
@@ -75,11 +78,6 @@ public class AutoTarget {
 		}
 		return false;
 	}
-	/**
-	 * centers robot by rotating until it reaches target
-	 * @return if it reached the Target rotationally
-	 */
-	
 	
 		
 }
