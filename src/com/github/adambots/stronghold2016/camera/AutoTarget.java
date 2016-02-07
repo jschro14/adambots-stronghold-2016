@@ -3,9 +3,10 @@ package com.github.adambots.stronghold2016.camera;
 
 import org.usfirst.frc.team245.robot.Actuators;
 
+import com.github.adambots.stronghold2016.drive.Drive;
+
 /**
- * 
- * @author Robin Onsay
+ * All Auto-targeting code
  *
  */
 public class AutoTarget {
@@ -26,6 +27,10 @@ public class AutoTarget {
 	public static void init(){
 		
 	}
+	/**
+	 * Centers target based on distance and rotation, not on translational-z
+	 * @return whether robot is centered or not
+	 */
 	public static boolean centerTarget(){
 		double ratio = 0;
 		ratio = Target.getHeight()[0]/Target.getWidth()[0];
@@ -52,16 +57,13 @@ public class AutoTarget {
 			boolean isAtTarget = isAtTargetX && isAtTargetY;
 			
 			if(isAtTarget){
-				Actuators.getRightDriveMotor().set(Actuators.STOP_MOTOR);
-				Actuators.getLeftDriveMotor().set(Actuators.STOP_MOTOR);
+				Drive.drive(Actuators.STOP_MOTOR);
 			}else if(isAtTargetX){
 				double speed = kPY*errorY;
-				Actuators.getRightDriveMotor().set(speed);
-				Actuators.getLeftDriveMotor().set(speed);
+				Drive.drive(speed);
 			}else if(isAtTargetY){
 				double speed = kPX*errorX;
-				Actuators.getRightDriveMotor().set(-speed);
-				Actuators.getLeftDriveMotor().set(speed);
+				Drive.drive(0, speed);
 			}else{
 //TODO: Test if you can adjust both x & y
 //				double speedX = kPX*errorX*1/2;
@@ -69,21 +71,13 @@ public class AutoTarget {
 //				Actuators.getRightDriveMotor().set(speedY-speedX);
 //				Actuators.getLeftDriveMotor().set(speedY+speedX);
 				double speed = kPX*errorX;
-				Actuators.getRightDriveMotor().set(-speed);
-				Actuators.getLeftDriveMotor().set(speed);
-				
-				
+				Drive.drive(0, speed);
 			}
 			
 			return isAtTarget;
 		}
 		return false;
 	}
-	/**
-	 * centers robot by rotating until it reaches target
-	 * @return if it reached the Target rotationally
-	 */
-	
 	
 		
 }

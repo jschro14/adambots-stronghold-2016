@@ -5,6 +5,10 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 
+/**
+ * All Robot sensors
+ *
+ */
 public class Sensors {
 	// Digital
 	private static Encoder driveEncoderLeft;
@@ -21,6 +25,9 @@ public class Sensors {
 	private static double stringPotArmDist;
 	private static double stringPotChassisDist;
 
+	/**
+	 * Initializes all sensors
+	 */
 	public static void init() {
 		// Digital
 		driveEncoderLeft = new Encoder(0, 0);
@@ -102,7 +109,11 @@ public class Sensors {
 	public static AnalogGyro getRobotGyro() {
 		return robotGyro;
 	}
-
+	
+	/**
+	 * 
+	 * @return the arm angle using the string pot
+	 */
 	public static double getStringPotArmAngle() {
 		// TODO: calibrate slope cm per degree
 		double slope = 0;

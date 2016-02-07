@@ -5,6 +5,10 @@ import org.usfirst.frc.team245.robot.Sensors;
 
 import edu.wpi.first.wpilibj.PIDController;
 
+/**
+ * All shooter logic
+ *
+ */
 public class Shooter {
 	private static final double LOAD_POSITION = 0.0; 
 	
@@ -14,13 +18,18 @@ public class Shooter {
 	private static final double Kd = 1;
 	private static PIDController armPID;
 	
-	
+	/**
+	 * Initializes PID for arm and checks if shooter is cocked
+	 */
 	public static void init() {
 		isCocked = Sensors.getCatapultLimitSwitch().get();
 		armPID = new PIDController(Kp, Ki, Kd, Sensors.getArmPot(), 
 						Actuators.getArmAngleMotor());
 	}
 	
+	/**
+	 * Stops the loading the shooter
+	 */
 	public static void stopLoadShooter(){
 		Actuators.getArmAngleMotor().set(Actuators.STOP_MOTOR);
 		Actuators.getArmAngleMotor().disable();
@@ -28,8 +37,10 @@ public class Shooter {
 	
 	/**
 	 * Loads shooter using CANTalon PID
+	 * @return boolean - is shooter loaded
 	 */
-	public static void loadShooter(){
+	public static boolean loadShooter(){
+		boolean isShooterLoaded = false;
 		double loadSpeed = 1;
 		if(Sensors.getIntakeArmPhotoEye().get()){
 		//if we CANTalon works with string pot
@@ -44,10 +55,18 @@ public class Shooter {
 		if(Sensors.getBoulderCanLaunchPhotoEye().get()){
 			Actuators.getArmAngleMotor().disable();
 			Actuators.getBoulderIntakeMotor().set(Actuators.STOP_MOTOR);
+			isShooterLoaded = true;
 		}
+		return isShooterLoaded;
 	}
 	
-	public static void loadShooter(int param){
+	/**
+	 * Loads shooter using PID on RoboRio
+	 * @param param - Dummy parameter
+	 * @return boolean - is shooter loaded
+	 */
+	public static boolean loadShooter(int param){
+		boolean isShooterLoaded = false;
 		double loadSpeed = 1;
 		//TODO: Calibrate Tolerance
 		final double TOLERANCE = 0;
@@ -64,10 +83,16 @@ public class Shooter {
 		
 		if(Sensors.getBoulderCanLaunchPhotoEye().get()){
 			armPID.disable();
-			Actuators.getBoulderIntakeMotor().set(Actuators.STOP_MOTOR);;
+			Actuators.getBoulderIntakeMotor().set(Actuators.STOP_MOTOR);
+			isShooterLoaded = true;
 		}
+		return isShooterLoaded;
 	}
 	
+	/**
+	 * Only loads shooter
+	 * @return boolean -  state of the shooter (if it is cocked or not)
+	 */
 	public static boolean cock() {
 		int speed = 0;
 
@@ -76,26 +101,32 @@ public class Shooter {
 			// stop motor, and catapult is cocked
 			Actuators.getCatapultMotor().set(Actuators.STOP_MOTOR);
 			isCocked = true;
-			return isCocked;
+			
+		}else{
+			// if limit switch is not pressed
+			isCocked = false;
+			// run motor at speed, catapult is not cocked
+			Actuators.getCatapultMotor().set(speed);
 		}
-		// if limit switch is not pressed
-		isCocked = false;
-		// run motor at speed, catapult is not cocked
-		Actuators.getCatapultMotor().set(speed);
 		return isCocked;
 
 	}
-
-	public static void shoot() {
+	
+	/**
+	 * Shoots ball, and loads shooter if it is not loaded
+	 * @return boolean - did robot shoot
+	 */
+	public static boolean shoot() {
+		boolean didShoot = false;
 		int speed = 0;
 		// if catapult is cocked, run motor at speed
 		if (isCocked) {
 			Actuators.getCatapultMotor().set(speed);
 			// catapult is no longer cocked
 			isCocked = false;
-		} else {
-
-			cock();
+		} else{
+			didShoot = cock();
 		}
+		return didShoot;
 	}
 }
