@@ -4,12 +4,28 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
-
+/**
+ * All of our robot's actuators including motors and pneumatics
+ */
 public class Actuators {
-	//constants
+	//CONSTANTS
+	
+	//The PID constants for the arm
 	private static final double ARM_ANGLE_KP = 1;
 	private static final double ARM_ANGLE_KI = 1;
 	private static final double ARM_ANGLE_KD = 1;
+	
+	//The PID constants for right drive motors
+	private static final double RIGHT_DRIVE_KP = 1;
+	private static final double RIGHT_DRIVE_KI = 1;
+	private static final double RIGHT_DRIVE_KD = 1;
+	
+	//The PID constants for left drive motors
+	private static final double LEFT_DRIVE_KP = 1;
+	private static final double LEFT_DRIVE_KI = 1;
+	private static final double LEFT_DRIVE_KD = 1;
+	
+	//Maximum and minimum motor speed constants and constant to stop motor
 	public static final double MAX_MOTOR_SPEED = 1;
 	public static final double MIN_MOTOR_SPEED = -1;
 	public static final double STOP_MOTOR = 0;
@@ -35,39 +51,42 @@ public class Actuators {
 
 	private static Solenoid winchRatchetPneumatic;
 
+	/**
+	 * Initializes all actuators
+	 */
 	public static void init() {
 		// TODO: Change ID's
 		// Motors
-		rightDriveMotor = new CANTalon(0);
-		rightDriveMotor2 = new CANTalon(0);
+		rightDriveMotor = new CANTalon(1);
+		rightDriveMotor2 = new CANTalon(2);
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightDriveMotor2.setInverted(true);
 		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
 
 		leftDriveMotor = new CANTalon(0);
-		leftDriveMotor2 = new CANTalon(0);
+		leftDriveMotor2 = new CANTalon(3);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftDriveMotor2.setInverted(true);
 		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
 
-		armWinchMotor1 = new VictorSP(0);
-		armWinchMotor2 = new VictorSP(0);
+		armWinchMotor1 = new VictorSP(4);
+		armWinchMotor2 = new VictorSP(5);
 		armWinchMotor2.setInverted(true);
 
-		armAngleMotor = new CANTalon(0);
+		armAngleMotor = new CANTalon(6);
 		armAngleMotor.setP(ARM_ANGLE_KP);
 		armAngleMotor.setI(ARM_ANGLE_KI);
 		armAngleMotor.setD(ARM_ANGLE_KD);
 		//TODO: Use string pot with CANTalon
 		
 
-		boulderIntakeMotor = new VictorSP(0);
+		boulderIntakeMotor = new VictorSP(7);
 
-		catapultMotor = new VictorSP(0);
+		catapultMotor = new VictorSP(8);
 
 		// Solenoids
 		driveShiftPneumatic = new Solenoid(0);
-		winchRatchetPneumatic = new Solenoid(0);
+		winchRatchetPneumatic = new Solenoid(1);
 	}
 
 	/**
