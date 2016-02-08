@@ -3,13 +3,25 @@ package com.github.adambots.stronghold2016.arm;
 import org.usfirst.frc.team245.robot.Actuators;
 import org.usfirst.frc.team245.robot.Sensors;
 
+/**
+ * All arm code
+ *
+ */
 public class Arm {
+	/**
+	 * Initializes arm
+	 */
 	public static void init() {
 		Actuators.getWinchRatchetPneumatic().set(false);
 	}
 
 	private static boolean released = false;
 
+	/**
+	 * Runs intake
+	 * @param intake
+	 * @param putout
+	 */
 	public static void rollers(boolean intake, boolean putout) {
 		if (intake == true) {
 			Actuators.getBoulderIntakeMotor().set(Actuators.MAX_MOTOR_SPEED);
@@ -19,6 +31,10 @@ public class Arm {
 		}
 	}
 
+	/**
+	 * moves arm within range
+	 * @param speed
+	 */
 	public static void moveArm(double speed) {
 		if (Sensors.getArmMinLimitSwitch().get() == false && Sensors.getArmMaxLimitSwitch().get() == false) {
 			Actuators.getArmAngleMotor().set(speed);
@@ -26,7 +42,10 @@ public class Arm {
 			Actuators.getArmAngleMotor().set(Actuators.STOP_MOTOR);
 		}
 	}
-
+	/**
+	 * Runs winch to climb
+	 * @param button
+	 */
 	public static void climb(boolean button) {
 		if (!released && button) {
 			Actuators.getWinchRatchetPneumatic().set(true);

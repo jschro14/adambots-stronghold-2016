@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
 	 *
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
+	 * to the switch structure below with additional strings commands.
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) chooser.getSelected();
@@ -95,6 +95,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
+	private boolean isShooterLoaded;
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -103,6 +104,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Arm.init();
+		isShooterLoaded = true;
 	}
 
 	/**
@@ -123,10 +125,13 @@ public class Robot extends IterativeRobot {
 		
 		if(Gamepad.primary.getRB()){
 			//if using PID in CANTalons
-			Shooter.loadShooter();
+			//Shooter.loadShooter();
 			//if using PID class on roborio
-			Shooter.loadShooter(0);
-		}else{
+			isShooterLoaded = Shooter.loadShooter(0);
+		}else if(!isShooterLoaded){
+			isShooterLoaded = Shooter.loadShooter(0);
+		}
+		else{
 			Shooter.stopLoadShooter();
 		}
 		
