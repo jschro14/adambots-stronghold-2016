@@ -65,6 +65,7 @@ public class Actuators {
 		rightDriveMotor.setPID(RIGHT_DRIVE_KP, RIGHT_DRIVE_KI, RIGHT_DRIVE_KD);
 
 		leftDriveMotor = new CANTalon(0);
+		leftDriveMotor.setInverted(true);
 		leftDriveMotor2 = new CANTalon(3);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftDriveMotor2.setInverted(true);
