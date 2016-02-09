@@ -3,6 +3,7 @@ package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
+import com.github.adambots.stronghold2016.auton.AutonMain;
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
 import com.github.adambots.stronghold2016.drive.Drive;
@@ -75,7 +76,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) chooser.getSelected();
-
+		AutonMain.autonInit();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -93,6 +94,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		AutonMain.autonDriveTest();
 	}
 
 	private boolean isShooterLoaded;
