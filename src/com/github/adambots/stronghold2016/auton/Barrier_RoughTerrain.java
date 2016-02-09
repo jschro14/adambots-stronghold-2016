@@ -1,5 +1,9 @@
 package com.github.adambots.stronghold2016.auton;
 
+import org.usfirst.frc.team245.robot.Sensors;
+
+import com.github.adambots.stronghold2016.drive.Drive;
+
 public class Barrier_RoughTerrain extends Barrier {
 	int distance;
 	char cat;
@@ -27,11 +31,11 @@ public class Barrier_RoughTerrain extends Barrier {
 		}
 		if (there && !crossed) {
 			Drive.drive(1, 0);
-			{
+			
 				if (Sensors.getDriveEncoderLeft().getDistance() >= crossDistance) {
 					crossed = true;
 				}
-			}
+			
 		}
 	}
 }
