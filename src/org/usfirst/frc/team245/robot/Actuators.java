@@ -62,21 +62,21 @@ public class Actuators {
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightDriveMotor2.setInverted(true);
 		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
+		rightDriveMotor.setPID(RIGHT_DRIVE_KP, RIGHT_DRIVE_KI, RIGHT_DRIVE_KD);
 
 		leftDriveMotor = new CANTalon(0);
 		leftDriveMotor2 = new CANTalon(3);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftDriveMotor2.setInverted(true);
 		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
+		leftDriveMotor.setPID(LEFT_DRIVE_KP, LEFT_DRIVE_KI, LEFT_DRIVE_KD);
 
 		armWinchMotor1 = new VictorSP(4);
 		armWinchMotor2 = new VictorSP(5);
 		armWinchMotor2.setInverted(true);
 
 		armAngleMotor = new CANTalon(6);
-		armAngleMotor.setP(ARM_ANGLE_KP);
-		armAngleMotor.setI(ARM_ANGLE_KI);
-		armAngleMotor.setD(ARM_ANGLE_KD);
+		armAngleMotor.setPID(ARM_ANGLE_KP, ARM_ANGLE_KI, ARM_ANGLE_KD);
 		//TODO: Use string pot with CANTalon
 		
 
@@ -85,7 +85,7 @@ public class Actuators {
 		catapultMotor = new VictorSP(8);
 
 		// Solenoids
-		driveShiftPneumatic = new Solenoid(0);
+		driveShiftPneumatic = new Solenoid(2);
 		winchRatchetPneumatic = new Solenoid(1);
 	}
 

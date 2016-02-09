@@ -121,7 +121,10 @@ public class Robot extends IterativeRobot {
 		Arm.climb(Gamepad.secondary.getX());
 
 		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getRightX());
-
+		
+		if(Gamepad.primary.getLB()){
+			Drive.shift();
+		}
 		
 		if(Gamepad.primary.getRB()){
 			//if using PID in CANTalons
