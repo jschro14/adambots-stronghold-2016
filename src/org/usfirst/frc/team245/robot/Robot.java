@@ -94,6 +94,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	private boolean pastShift;
@@ -106,6 +107,9 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 		Arm.init();
 		pastShift = false;
+		
+		//TODO:TEST CODE
+		
 	}
 
 	/**
@@ -130,7 +134,14 @@ public class Robot extends IterativeRobot {
 		}else if(!Gamepad.primary.getLB()){
 			pastShift = Gamepad.primary.getLB();
 		}
-		
+		//TEST CODE *****************************************************************
+		Actuators.getRightDriveMotor().enableZeroSensorPositionOnIndex(true, true);
+		Actuators.getLeftDriveMotor().enableZeroSensorPositionOnIndex(true, true);
+		SmartDashboard.putString("RIGHT ENCODER_POSITION: ", Integer.toString(Actuators.getRightDriveMotor().getEncPosition()));
+		SmartDashboard.putString("RIGHT ENCODER_VELOCITY: ", Integer.toString(Actuators.getRightDriveMotor().getEncVelocity()));
+		SmartDashboard.putString("LEFT ENCODER_POSITION: ", Integer.toString(Actuators.getLeftDriveMotor().getEncPosition()));
+		SmartDashboard.putString("LEFT ENCODER_VELOCITY: ", Integer.toString(Actuators.getLeftDriveMotor().getEncVelocity()));
+		//***************************************************************************
 //		if(Gamepad.primary.getRB()){
 //			//if using PID in CANTalons
 //			//Shooter.loadShooter();
