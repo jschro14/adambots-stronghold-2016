@@ -21,6 +21,8 @@ public class Barrier_Drawbridge extends Barrier {
 		down = false;
 		crossingDistance = 20;
 		crossed = false;
+		super.cat='C';
+		super.catNum=1;
 	}
 
 	public void go() {
