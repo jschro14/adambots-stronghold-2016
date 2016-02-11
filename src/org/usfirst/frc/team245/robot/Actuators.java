@@ -10,12 +10,18 @@ import edu.wpi.first.wpilibj.VictorSP;
  */
 public class Actuators {
 	
+	
 	//CONSTANTS
 	
 	//The PID constants for the arm
 	private static final double ARM_ANGLE_KP = 1;
 	private static final double ARM_ANGLE_KI = 1;
 	private static final double ARM_ANGLE_KD = 1;
+	private static final int ARM_ACCEPTABLE_EROR = 0;
+	private static final int ARM_POT_TURNS_PER_REV = 7;
+	private static final boolean ARM_REVERSE_SENSOR = false;
+	public static final double MAX_MOTOR_POSITION= 0.0;
+	public static final double MIN_MOTOR_POSITION= 0.0;
 	
 	//CANTalon constants for motors
 	private static final float NOMINAL_REVERSE_VOLTAGE = -0f;
@@ -92,7 +98,8 @@ public class Actuators {
 		armWinchMotor2.setInverted(true);
 
 		armAngleMotor = new CANTalon(6);
-		armAngleMotor.setPID(ARM_ANGLE_KP, ARM_ANGLE_KI, ARM_ANGLE_KD);
+		armAngleMotor = initCANTalon(armAngleMotor, FeedbackDevice.AnalogPot, ARM_REVERSE_SENSOR, 
+				ARM_POT_TURNS_PER_REV, ARM_ACCEPTABLE_EROR, ARM_ANGLE_KP, ARM_ANGLE_KI, ARM_ANGLE_KD);
 		//TODO: Use string pot with CANTalon
 		
 
@@ -103,6 +110,21 @@ public class Actuators {
 		// Solenoids
 		driveShiftPneumatic = new Solenoid(2);
 		winchRatchetPneumatic = new Solenoid(1);
+	}
+	
+	/**
+	 * All initiliztaion for teleop
+	 */
+	public static void teleopInit(){
+		
+		rightDriveMotor = initCANTalon(rightDriveMotor, FeedbackDevice.QuadEncoder, RIGHT_DIVE_REVERSE_SENSOR, 
+				CODES_PER_REV, DRIVE_MOTOR_ACCEPTABLE_ERROR, RIGHT_DRIVE_KP, RIGHT_DRIVE_KI, RIGHT_DRIVE_KD);
+		
+		leftDriveMotor = initCANTalon(leftDriveMotor, FeedbackDevice.QuadEncoder, LEFT_DIVE_REVERSE_SENSOR, 
+				CODES_PER_REV, DRIVE_MOTOR_ACCEPTABLE_ERROR, LEFT_DRIVE_KP, LEFT_DRIVE_KI, LEFT_DRIVE_KD);
+		
+		armAngleMotor = initCANTalon(armAngleMotor, FeedbackDevice.AnalogPot, ARM_REVERSE_SENSOR, 
+				ARM_POT_TURNS_PER_REV, ARM_ACCEPTABLE_EROR, ARM_ANGLE_KP, ARM_ANGLE_KI, ARM_ANGLE_KD);
 	}
 
 	/**
@@ -176,14 +198,19 @@ public class Actuators {
 		return winchRatchetPneumatic;
 	}
 
-	private static CANTalon initCANTalon(CANTalon talon, FeedbackDevice device, boolean reverseSensor, int encCoderPerRev, int acceptableErr, 
+	private static CANTalon initCANTalon(CANTalon talon, FeedbackDevice device, boolean reverseSensor, int codesPerRev, int acceptableErr, 
 			double rightDriveKp, double rightDriveKi, double rightDriveKd){
 		talon.reset();
 		talon.enableZeroSensorPositionOnIndex(true, true);
 		talon.setPosition(0);
 		talon.setFeedbackDevice(device);
 		talon.reverseSensor(reverseSensor);
-		talon.configEncoderCodesPerRev(encCoderPerRev);
+		
+		if(FeedbackDevice.QuadEncoder.equals(device))
+			talon.configEncoderCodesPerRev(codesPerRev);
+		else if(FeedbackDevice.AnalogPot.equals(device))
+			talon.configPotentiometerTurns(codesPerRev);
+		
 		talon.configNominalOutputVoltage(NOMINAL_FORWARD_VOLTAGE, NOMINAL_REVERSE_VOLTAGE);
 		talon.configPeakOutputVoltage(PEAK_FORWARD_VOLTAGE, PEAK_REVERSE_VOLTAGE);
 		
