@@ -1,6 +1,7 @@
 package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -8,6 +9,7 @@ import edu.wpi.first.wpilibj.VictorSP;
  * All of our robot's actuators including motors and pneumatics
  */
 public class Actuators {
+	
 	//CONSTANTS
 	
 	//The PID constants for the arm
@@ -15,15 +17,26 @@ public class Actuators {
 	private static final double ARM_ANGLE_KI = 1;
 	private static final double ARM_ANGLE_KD = 1;
 	
+	//CANTalon constants for motors
+	private static final float NOMINAL_REVERSE_VOLTAGE = -0f;
+	private static final float NOMINAL_FORWARD_VOLTAGE = +0f;
+	private static final int DRIVE_MOTOR_ACCEPTABLE_ERROR = 0;
+	private static final float PEAK_REVERSE_VOLTAGE = -12f;
+	private static final float PEAK_FORWARD_VOLTAGE = +12f;
+	private static final int CODES_PER_REV = 720;
+	
 	//The PID constants for right drive motors
 	private static final double RIGHT_DRIVE_KP = 1;
-	private static final double RIGHT_DRIVE_KI = 1;
-	private static final double RIGHT_DRIVE_KD = 1;
+	private static final double RIGHT_DRIVE_KI = 0;
+	private static final double RIGHT_DRIVE_KD = 0;
+	private static final boolean RIGHT_DIVE_REVERSE_SENSOR = false;
+	
 	
 	//The PID constants for left drive motors
 	private static final double LEFT_DRIVE_KP = 1;
-	private static final double LEFT_DRIVE_KI = 1;
-	private static final double LEFT_DRIVE_KD = 1;
+	private static final double LEFT_DRIVE_KI = 0;
+	private static final double LEFT_DRIVE_KD = 0;
+	private static final boolean LEFT_DIVE_REVERSE_SENSOR = true;
 	
 	//Maximum and minimum motor speed constants and constant to stop motor
 	public static final double MAX_MOTOR_SPEED = 1;
@@ -58,19 +71,21 @@ public class Actuators {
 		// TODO: Change ID's
 		// Motors
 		rightDriveMotor = new CANTalon(3);
+		rightDriveMotor = initCANTalon(rightDriveMotor, FeedbackDevice.QuadEncoder, RIGHT_DIVE_REVERSE_SENSOR, 
+				CODES_PER_REV, DRIVE_MOTOR_ACCEPTABLE_ERROR, RIGHT_DRIVE_KP, RIGHT_DRIVE_KI, RIGHT_DRIVE_KD);
 		rightDriveMotor2 = new CANTalon(0);
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightDriveMotor2.setInverted(true);
 		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
-		rightDriveMotor.setPID(RIGHT_DRIVE_KP, RIGHT_DRIVE_KI, RIGHT_DRIVE_KD);
 
 		leftDriveMotor = new CANTalon(2);
+		leftDriveMotor = initCANTalon(leftDriveMotor, FeedbackDevice.QuadEncoder, LEFT_DIVE_REVERSE_SENSOR, 
+				CODES_PER_REV, DRIVE_MOTOR_ACCEPTABLE_ERROR, LEFT_DRIVE_KP, LEFT_DRIVE_KI, LEFT_DRIVE_KD);
 		leftDriveMotor.setInverted(true);
 		leftDriveMotor2 = new CANTalon(1);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftDriveMotor2.setInverted(true);
 		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
-		leftDriveMotor.setPID(LEFT_DRIVE_KP, LEFT_DRIVE_KI, LEFT_DRIVE_KD);
 
 		armWinchMotor1 = new VictorSP(4);
 		armWinchMotor2 = new VictorSP(5);
@@ -161,4 +176,20 @@ public class Actuators {
 		return winchRatchetPneumatic;
 	}
 
+	private static CANTalon initCANTalon(CANTalon talon, FeedbackDevice device, boolean reverseSensor, int encCoderPerRev, int acceptableErr, 
+			double rightDriveKp, double rightDriveKi, double rightDriveKd){
+		talon.reset();
+		talon.enableZeroSensorPositionOnIndex(true, true);
+		talon.setPosition(0);
+		talon.setFeedbackDevice(device);
+		talon.reverseSensor(reverseSensor);
+		talon.configEncoderCodesPerRev(encCoderPerRev);
+		talon.configNominalOutputVoltage(NOMINAL_FORWARD_VOLTAGE, NOMINAL_REVERSE_VOLTAGE);
+		talon.configPeakOutputVoltage(PEAK_FORWARD_VOLTAGE, PEAK_REVERSE_VOLTAGE);
+		
+		talon.setAllowableClosedLoopErr(acceptableErr);
+		talon.setPID(rightDriveKp, rightDriveKi, rightDriveKd);
+		return talon;
+	}
+	
 }
