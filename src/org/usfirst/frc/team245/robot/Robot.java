@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		
+		AutonMain.autonInit();
 	}
 
 	/**
@@ -101,17 +101,18 @@ public class Robot extends IterativeRobot {
 
 	private boolean pastShift;
 	public void teleopInit() {
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		/*if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		Arm.init();
 		pastShift = false;
 		
 		//TODO:TEST CODE
-		
+	*/	
 	}
 
 	/**
@@ -119,6 +120,8 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void teleopPeriodic() {
+		AutonMain.autonDriveTest();
+		/*
 		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
 //TODO: TEST ARM CODE
@@ -157,7 +160,7 @@ public class Robot extends IterativeRobot {
 //		}
 		
 		
-
+*/
 	}
 
 	/**
