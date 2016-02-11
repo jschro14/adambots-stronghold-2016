@@ -57,16 +57,16 @@ public class Actuators {
 	public static void init() {
 		// TODO: Change ID's
 		// Motors
-		rightDriveMotor = new CANTalon(2);
-		rightDriveMotor2 = new CANTalon(1);
+		rightDriveMotor = new CANTalon(3);
+		rightDriveMotor2 = new CANTalon(0);
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightDriveMotor2.setInverted(true);
 		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
 		rightDriveMotor.setPID(RIGHT_DRIVE_KP, RIGHT_DRIVE_KI, RIGHT_DRIVE_KD);
 
-		leftDriveMotor = new CANTalon(3);
+		leftDriveMotor = new CANTalon(2);
 		leftDriveMotor.setInverted(true);
-		leftDriveMotor2 = new CANTalon(0);
+		leftDriveMotor2 = new CANTalon(1);
 		leftDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftDriveMotor2.setInverted(true);
 		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
