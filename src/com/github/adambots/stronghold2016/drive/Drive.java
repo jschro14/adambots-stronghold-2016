@@ -43,5 +43,16 @@ public class Drive {
 		Actuators.getLeftDriveMotor().set(leftSpeed);
 		Actuators.getRightDriveMotor().set(rightSpeed);
 	}
+	
+	public static void shift(){
+		
+		if(Actuators.getDriveShiftPneumatic().get()){
+			Actuators.getDriveShiftPneumatic().set(false);
+		}else{
+			Actuators.getDriveShiftPneumatic().set(true);
+		}
+		
+	}
+	
 }
 
