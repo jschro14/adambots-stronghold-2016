@@ -15,7 +15,6 @@ public class AutonMain {
 	private static final int CODES_PER_REV = 720;
 
 	public static void init(){
-		//TODO: Move to Actuators init()
 		Actuators.getLeftDriveMotor().reset();
 		Actuators.getLeftDriveMotor().enableZeroSensorPositionOnIndex(true, true);
 		Actuators.getLeftDriveMotor().setPosition(0);
