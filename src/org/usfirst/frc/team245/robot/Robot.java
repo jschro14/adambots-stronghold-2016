@@ -49,7 +49,11 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		AutonMain.autonInit();
+=======
+		Actuators.init();
+>>>>>>> Adambots-245/test-code
 =======
 		Actuators.init();
 >>>>>>> Adambots-245/test-code
@@ -118,7 +122,11 @@ public class Robot extends IterativeRobot {
 		
 		//TODO:TEST CODE
 <<<<<<< HEAD
+<<<<<<< HEAD
 	*/	
+=======
+		Actuators.teleopInit();
+>>>>>>> Adambots-245/test-code
 =======
 		Actuators.teleopInit();
 >>>>>>> Adambots-245/test-code
