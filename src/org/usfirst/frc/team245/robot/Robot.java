@@ -111,7 +111,7 @@ public class Robot extends IterativeRobot {
 		pastShift = false;
 		
 		//TODO:TEST CODE
-		AutonMain.init();
+		Actuators.teleopInit();
 	}
 
 	/**
