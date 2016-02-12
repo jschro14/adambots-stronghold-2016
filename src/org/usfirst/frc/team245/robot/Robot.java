@@ -35,11 +35,11 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		Actuators.init();
+		
 		//TODO: Uncomment inits
 		//Sensors.init();
 		//Shooter.init();
-		Drive.init();//does not have anything
+		//Drive.init();//does not have anything
 		//Target.init();//Using Grip
 		//AutoTarget.init();//does not contain anything
 		chooser = new SendableChooser();
@@ -48,7 +48,11 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+<<<<<<< HEAD
 		AutonMain.autonInit();
+=======
+		Actuators.init();
+>>>>>>> Adambots-245/test-code
 	}
 
 	/**
@@ -100,6 +104,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	private boolean pastShift;
+	
 	public void teleopInit() {
 		
 		// This makes sure that the autonomous stops running when
@@ -108,11 +113,15 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		/*if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		Arm.init();
+		//Arm.init();
 		pastShift = false;
 		
 		//TODO:TEST CODE
+<<<<<<< HEAD
 	*/	
+=======
+		Actuators.teleopInit();
+>>>>>>> Adambots-245/test-code
 	}
 
 	/**
@@ -131,7 +140,7 @@ public class Robot extends IterativeRobot {
 //
 //		Arm.climb(Gamepad.secondary.getX());
 
-		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
+		//Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
 		
 		if(Gamepad.primary.getLB() && pastShift == false){
 			Drive.shift();
@@ -140,12 +149,12 @@ public class Robot extends IterativeRobot {
 			pastShift = Gamepad.primary.getLB();
 		}
 		//TEST CODE *****************************************************************
-		Actuators.getRightDriveMotor().enableZeroSensorPositionOnIndex(true, true);
-		Actuators.getLeftDriveMotor().enableZeroSensorPositionOnIndex(true, true);
 		SmartDashboard.putString("RIGHT ENCODER_POSITION: ", Integer.toString(Actuators.getRightDriveMotor().getEncPosition()));
 		SmartDashboard.putString("RIGHT ENCODER_VELOCITY: ", Integer.toString(Actuators.getRightDriveMotor().getEncVelocity()));
 		SmartDashboard.putString("LEFT ENCODER_POSITION: ", Integer.toString(Actuators.getLeftDriveMotor().getEncPosition()));
 		SmartDashboard.putString("LEFT ENCODER_VELOCITY: ", Integer.toString(Actuators.getLeftDriveMotor().getEncVelocity()));
+		
+		AutonMain.test();
 		//***************************************************************************
 //		if(Gamepad.primary.getRB()){
 //			//if using PID in CANTalons

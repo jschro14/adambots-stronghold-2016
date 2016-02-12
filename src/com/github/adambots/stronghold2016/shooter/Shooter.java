@@ -3,6 +3,7 @@ package com.github.adambots.stronghold2016.shooter;
 import org.usfirst.frc.team245.robot.Actuators;
 import org.usfirst.frc.team245.robot.Sensors;
 
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.PIDController;
 
 /**
@@ -44,16 +45,17 @@ public class Shooter {
 		double loadSpeed = 1;
 		if(Sensors.getIntakeArmPhotoEye().get()){
 		//if we CANTalon works with string pot
-			Actuators.getArmAngleMotor().setPosition(LOAD_POSITION);
+			Actuators.getArmAngleMotor().changeControlMode(TalonControlMode.Position);
+			Actuators.getArmAngleMotor().set(LOAD_POSITION);
 			Actuators.getArmAngleMotor().enable();
 		}
 		
-		if(Actuators.getArmAngleMotor().getPosition() == LOAD_POSITION){
+		if(Actuators.getArmAngleMotor().getError() == 0){
 			Actuators.getBoulderIntakeMotor().set(loadSpeed);
 		}
 		
 		if(Sensors.getBoulderCanLaunchPhotoEye().get()){
-			Actuators.getArmAngleMotor().disable();
+			Actuators.getArmAngleMotor().changeControlMode(TalonControlMode.PercentVbus);
 			Actuators.getBoulderIntakeMotor().set(Actuators.STOP_MOTOR);
 			isShooterLoaded = true;
 		}
