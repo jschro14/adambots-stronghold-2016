@@ -29,13 +29,13 @@ public class Actuators {
 	private static final int DRIVE_MOTOR_ACCEPTABLE_ERROR = 0;
 	private static final float PEAK_REVERSE_VOLTAGE = -12f;
 	private static final float PEAK_FORWARD_VOLTAGE = +12f;
-	private static final int CODES_PER_REV = 720;
+	private static final int CODES_PER_REV = (int) (720);
 	
 	//The PID constants for right drive motors
 	private static final double RIGHT_DRIVE_KP = 1;
 	private static final double RIGHT_DRIVE_KI = 0;
 	private static final double RIGHT_DRIVE_KD = 0;
-	private static final boolean RIGHT_DIVE_REVERSE_SENSOR = false;
+	private static final boolean RIGHT_DIVE_REVERSE_SENSOR = true;
 	
 	
 	//The PID constants for left drive motors
