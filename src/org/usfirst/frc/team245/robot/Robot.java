@@ -3,6 +3,7 @@ package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
+import com.github.adambots.stronghold2016.auton.*;
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
 import com.github.adambots.stronghold2016.drive.Drive;
@@ -29,7 +30,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser chooser;
 	Compressor compressor;
 
-	/**
+	/**1
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
@@ -46,7 +47,9 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		
+		chooser.addObject("RoughTerrain", new Barrier_RoughTerrain());
+		chooser.addObject("Drawbridge", new Barrier_Drawbridge());
+		chooser.addObject("ChevalDeFrise", new Barrier_ChevalDeFrise());
 	}
 
 	/**
