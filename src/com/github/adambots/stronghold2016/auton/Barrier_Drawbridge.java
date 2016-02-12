@@ -4,7 +4,7 @@ import com.github.adambots.stronghold2016.drive.Drive;
 import com.github.adambots.stronghold2016.arm.Arm;
 import org.usfirst.frc.team245.robot.Sensors;
 
-public class Barrier_Drawbridge {
+public class Barrier_Drawbridge extends Barrier {
 	boolean raised; // is arm raised
 	double distance; // distance from where this code takes over to the position
 						// we need to be to lower the drawbridge
@@ -21,6 +21,8 @@ public class Barrier_Drawbridge {
 		down = false;
 		crossingDistance = 20;
 		crossed = false;
+		super.cat='C';
+		super.catNum=1;
 	}
 
 	public void go() {
