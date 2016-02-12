@@ -46,7 +46,9 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		
+		chooser.setObject("ChevalDeFrise", new Barrier_ChevalDeFrise() );
+		chooser.setObject("Drawbridge", new Barrier_Drawbridge() );
+		chooser.setObject("RoughTerrain", new Barrier_RoughTerrain() );
 	}
 
 	/**
