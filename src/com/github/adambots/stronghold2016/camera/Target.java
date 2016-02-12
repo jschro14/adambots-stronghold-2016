@@ -13,7 +13,7 @@ public class Target {
 	        "/usr/local/frc/JRE/bin/java", "-jar",
 	        "/home/lvuser/grip.jar", "/home/lvuser/project.grip" };
 	
-	private final static NetworkTable GRIP_TABLE = NetworkTable.getTable("grip");
+	private final static NetworkTable GRIP_TABLE = NetworkTable.getTable("GRIP/targets");
 	
 	private static double[] centerX;
 	private static double[] centerY;
@@ -38,7 +38,7 @@ public class Target {
 	 * @return the centerX
 	 */
 	public static double[] getCenterX() {
-		centerX = GRIP_TABLE.getNumberArray("targets/centerX", new double[0]);
+		centerX = GRIP_TABLE.getNumberArray("centerX", new double[0]);
 		return centerX;
 	}
 
@@ -46,7 +46,7 @@ public class Target {
 	 * @return the centerY
 	 */
 	public static double[] getCenterY() {
-		centerY= GRIP_TABLE.getNumberArray("targets/centerY", new double[0]);
+		centerY= GRIP_TABLE.getNumberArray("centerY", new double[0]);
 		return centerY;
 	}
 
@@ -62,7 +62,7 @@ public class Target {
 	 * @return the area
 	 */
 	public static double[] getArea() {
-		area = GRIP_TABLE.getNumberArray("targets/area", new double[0]);
+		area = GRIP_TABLE.getNumberArray("area", new double[0]);
 		return area;
 	}
 
@@ -70,7 +70,7 @@ public class Target {
 	 * @return the height
 	 */
 	public static double[] getHeight() {
-		height = GRIP_TABLE.getNumberArray("targets/height", new double[0]);
+		height = GRIP_TABLE.getNumberArray("height", new double[0]);
 		return height;
 	}
 
@@ -78,7 +78,7 @@ public class Target {
 	 * @return the solidity
 	 */
 	public static double[] getSolidity() {
-		solidity = GRIP_TABLE.getNumberArray("targets/solidity", new double[0]);
+		solidity = GRIP_TABLE.getNumberArray("solidity", new double[0]);
 		return solidity;
 	}
 	
