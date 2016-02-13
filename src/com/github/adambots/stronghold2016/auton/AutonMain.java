@@ -7,31 +7,8 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutonMain {
-<<<<<<< HEAD
-	Auton_Barrier aB=new Auton_Barrier();
-public AutonMain(){
-	
-}
 
-/**
- * 
- * @param dBCI  array of chars from the drive station telling what category of barrier is in what spot on the field this is for auton barrier class
- * @param dBCNI tells which number of the category is in that position for auton barrier class
- * @param cPN current position after the positioning code is done for auton barrier class
- */
-public AutonMain(char[] dBCI, int[] dBCNI,int cPN){
-	aB.setInput(dBCI, dBCNI, cPN);
-}
-/**
- * 
- * @param dBCI  array of chars from the drive station telling what category of barrier is in what spot on the field this is for auton barrier class
- * @param dBCNI tells which number of the category is in that position for auton barrier class
- * @param cPN current position after the positioning code is done for auton barrier class
- */
-public void setInput(char[] dBCI, int[] dBCNI,int cPN){
-	aB.setInput(dBCI, dBCNI, cPN);
-}
-=======
+	
 	private static final float NOMINAL_REVERSE_VOLTAGE = -0f;
 	private static final float NOMINAL_FORWARD_VOLTAGE = +0f;
 	private static final int ACCEPTABLE_ERROR = 0;
@@ -57,7 +34,15 @@ public void setInput(char[] dBCI, int[] dBCNI,int cPN){
 		
 		
 	}
-	
+	/**
+	 * 
+	 * @param dBCI  array of chars from the drive station telling what category of barrier is in what spot on the field this is for auton barrier class
+	 * @param dBCNI tells which number of the category is in that position for auton barrier class
+	 * @param cPN current position after the positioning code is done for auton barrier class
+	 */
+	public static void setInput(char[] dBCI, int[] dBCNI,int cPN){
+		Auton_Barrier.autonBarrierGo(dBCI, dBCNI, cPN);
+	}
 	public static void test(){
 		SmartDashboard.putNumber("LEFT_ERROR", Actuators.getLeftDriveMotor().getError());
 		SmartDashboard.putNumber("RIGHT_ERROR", Actuators.getRightDriveMotor().getError());
@@ -71,5 +56,5 @@ public void setInput(char[] dBCI, int[] dBCNI,int cPN){
 		Actuators.getRightDriveMotor().enable();
 		
 	}
->>>>>>> refs/remotes/Adambots-245/master
+
 }
