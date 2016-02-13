@@ -33,22 +33,22 @@ public class AutoTarget {
 	 */
 	public static boolean centerTarget(){
 		double ratio = 0;
-		ratio = Target.getHeight()[0]/Target.getWidth()[0];
+		ratio = OpenCVExampleCode.getHeight()[0]/OpenCVExampleCode.getWidth()[0];
 		int indexOfBestTarget = 0;
-		for(int i= 0; i<Target.getHeight().length && i<Target.getWidth().length; i++){
-			if(Target.getHeight()[i]/Target.getWidth()[i]<=ratio){
-				ratio = Target.getHeight()[i]/Target.getWidth()[i];
+		for(int i= 0; i<OpenCVExampleCode.getHeight().length && i<OpenCVExampleCode.getWidth().length; i++){
+			if(OpenCVExampleCode.getHeight()[i]/OpenCVExampleCode.getWidth()[i]<=ratio){
+				ratio = OpenCVExampleCode.getHeight()[i]/OpenCVExampleCode.getWidth()[i];
 				indexOfBestTarget = i;
 			}
 		}
 		if(!(THRESHOLD_RATIO < ratio)){
-			double currentX = Target.getCenterX()[indexOfBestTarget];
+			double currentX = OpenCVExampleCode.getCenterX()[indexOfBestTarget];
 			double errorX = TARGET_CENTER_X - currentX;
 			errorX /= MAX_CENTER_X;
 			double kPX = 1;
 			boolean isAtTargetX = THRESHOLD_ERROR >= errorX;
 			
-			double currentY = Target.getCenterY()[indexOfBestTarget];
+			double currentY = OpenCVExampleCode.getCenterY()[indexOfBestTarget];
 			double errorY = -TARGET_CENTER_Y + currentY;
 			errorY /= MAX_CENTER_Y;
 			double kPY = 1;
