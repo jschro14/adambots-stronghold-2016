@@ -1,10 +1,20 @@
 package com.github.adambots.stronghold2016.camera;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Camera {
-//CONSTANTS
+	private static final double MIN_ASPECT_RATIO = 1.0;
+	private static final int MIN_CONTOUR_WIDTH = 25;
+	private static final int MIN_CONTOUR_HEIGHT = 25;
+	//CONSTANTS
 	private static final int IMG_HEIGHT = 240;
 	private static final int IMG_WIDTH = 320;
 
@@ -14,20 +24,20 @@ public class Camera {
 	GREEN = new Scalar(0, 255, 0),
 	BLACK = new Scalar(0,0,0),
 	YELLOW = new Scalar(0, 255, 255),
-	//Threshold Values 
-	LOWER_BOUNDS = new Scalar(58,0,109),
-	UPPER_BOUNDS = new Scalar(93,255,240);
-	
+	//Threshold Values in order
+	SCALAR_LOWER_BOUNDS = new Scalar(0,69,96),
+	SCALAR_UPPER_BOUNDS = new Scalar(180,155,184);
+
 	// Resized Image
 	private static final Size IMG_SIZE = new Size(IMG_WIDTH, IMG_HEIGHT);
-	
-	
+
+
 	//Different Matrices for Img Proc
 	private static Mat matOriginal, matHSV, matThresh, clusters, matHeirarchy;
-	
+
 	//Camera stream
 	private static VideoCapture videoCapture;
-	
+
 	//	the height to the top of the target in first stronghold is 97 inches	
 	public static final int TOP_TARGET_HEIGHT = 97;
 	//	the physical height of the camera lens
@@ -49,12 +59,12 @@ public class Camera {
 		//Opens Camera System
 		videoCapture = new VideoCapture();
 	}
-	
+
 	public static boolean openStream(){
 		videoCapture.open(0);
 		return videoCapture.isOpened();
 	}
-	
+
 	public static boolean closeStream(){
 		videoCapture.release();
 		return videoCapture.isOpened();
@@ -66,9 +76,85 @@ public class Camera {
 	 */
 	public static void main(String[] args) {
 		init();
-		videoCapture.open(0);
-		System.out.println(videoCapture.isOpened());
+		System.out.println(openStream());
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Target target = getTarget();
+		System.out.println(target.getCenterX() + " "+ target.getCenterY());
+		System.out.println(closeStream());
+		
 	}
-	
-	
+
+	public static Target getTarget(){
+		Rect rec = Imgproc.boundingRect(getBestContour());
+		
+		int centerX = rec.width/2 + rec.x;
+		int centerY = rec.height/2 + rec.y;
+		double y = rec.br().y + rec.height / 2;
+		y= -((2 * (y / matOriginal.height())) - 1);
+		double distance = (TOP_TARGET_HEIGHT - TOP_CAMERA_HEIGHT) / 
+				Math.tan((y * VERTICAL_FOV / 2.0 + CAMERA_ANGLE) * Math.PI / 180);
+		//TEST CODE
+		Point center = new Point(rec.br().x-rec.width / 2 - 15,rec.br().y - rec.height / 2);
+		Point centerw = new Point(rec.br().x-rec.width / 2 - 15,rec.br().y - rec.height / 2 - 20);
+		Imgproc.putText(matOriginal, ""+(int)distance, center, Core.FONT_HERSHEY_PLAIN, 1, RED);
+		Imgproc.putText(matOriginal, "", centerw, Core.FONT_HERSHEY_PLAIN, 1, RED);
+		Imgcodecs.imwrite("output.png", matOriginal);
+		//
+		return new Target(centerX, centerY, rec.width * rec.height, distance);
+	}
+
+	private static MatOfPoint getBestContour() {
+		videoCapture.read(matOriginal);
+		Imgproc.cvtColor(matOriginal,matHSV,Imgproc.COLOR_RGB2HSV);
+		Core.inRange(matHSV, SCALAR_LOWER_BOUNDS, SCALAR_UPPER_BOUNDS, matThresh);
+		Imgcodecs.imwrite("original.png", matOriginal);
+		Imgcodecs.imwrite("hsv.png", matHSV);
+		Imgcodecs.imwrite("thresh1.png", matThresh);
+		ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+		contours.clear();
+		Imgproc.findContours(matThresh, contours, matHeirarchy, Imgproc.RETR_EXTERNAL, 
+				Imgproc.CHAIN_APPROX_SIMPLE);
+		//		make sure the contours that are detected are at least 20x20 
+		//		pixels with an area of 400 and an aspect ration greater then 1
+		
+		Imgcodecs.imwrite("thresh2.png", matThresh);
+		
+		for (Iterator<MatOfPoint> iterator = contours.iterator(); iterator.hasNext();) {
+			MatOfPoint matOfPoint = (MatOfPoint) iterator.next();
+			Rect rec = Imgproc.boundingRect(matOfPoint);
+			System.out.println(rec.height + " : "+rec.width);
+			if(rec.height < MIN_CONTOUR_HEIGHT || rec.width < MIN_CONTOUR_WIDTH){
+				iterator.remove();
+				continue;
+			}
+//			float aspect = (float)rec.width/(float)rec.height;
+//			if(aspect < MIN_ASPECT_RATIO)
+//				iterator.remove();
+		}
+		//System.out.println(contours);
+		MatOfPoint bestContour = null;
+		MatOfPoint lastContour = (!contours.isEmpty())?contours.remove(0):null;
+		for(MatOfPoint mop : contours){
+			Rect rec = Imgproc.boundingRect(mop);
+			Rect lastRec = Imgproc.boundingRect(lastContour);
+			Imgproc.rectangle(matOriginal, rec.br(), rec.tl(), BLACK);
+			float thisAspect = (float)rec.width/(float)rec.height;
+			float lastAspect = (float)lastRec.width/(float)lastRec.height;
+			if(thisAspect >= lastAspect){
+				bestContour = mop;
+			}
+			lastContour = mop;
+		}
+		
+		return bestContour;
+
+	}
+
+
+
 }
