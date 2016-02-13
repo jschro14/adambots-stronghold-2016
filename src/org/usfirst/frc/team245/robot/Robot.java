@@ -3,7 +3,13 @@ package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
+
+import com.github.adambots.stronghold2016.auton.Barrier_ChevalDeFrise;
+import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
+import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
+
 import com.github.adambots.stronghold2016.auton.AutonMain;
+
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
 import com.github.adambots.stronghold2016.drive.Drive;
@@ -48,7 +54,13 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+
+		chooser.addObject("ChevalDeFrise", new Barrier_ChevalDeFrise() );
+		chooser.addObject("Drawbridge", new Barrier_Drawbridge() );
+		chooser.addObject("RoughTerrain", new Barrier_RoughTerrain() );
+
 		Actuators.init();
+
 	}
 
 	/**
