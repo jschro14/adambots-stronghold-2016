@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
 import com.github.adambots.stronghold2016.auton.AutonMain;
 import com.github.adambots.stronghold2016.camera.AutoTarget;
-import com.github.adambots.stronghold2016.camera.Target;
+import com.github.adambots.stronghold2016.camera.OpenCVExampleCode;
 import com.github.adambots.stronghold2016.drive.Drive;
 import com.github.adambots.stronghold2016.shooter.Shooter;
 
@@ -40,7 +40,6 @@ public class Robot extends IterativeRobot {
 		//Sensors.init();
 		//Shooter.init();
 		//Drive.init();//does not have anything
-		Target.init();//Using Grip
 		//AutoTarget.init();//does not contain anything
 		chooser = new SendableChooser();
 		compressor = new Compressor();
@@ -50,7 +49,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		//Actuators.init();
 	}
-
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
@@ -137,15 +135,7 @@ public class Robot extends IterativeRobot {
 //			pastShift = Gamepad.primary.getLB();
 //		}
 		//TEST CODE *****************************************************************
-//		SmartDashboard.putString("RIGHT ENCODER_POSITION: ", Integer.toString(Actuators.getRightDriveMotor().getEncPosition()));
-//		SmartDashboard.putString("RIGHT ENCODER_VELOCITY: ", Integer.toString(Actuators.getRightDriveMotor().getEncVelocity()));
-//		SmartDashboard.putString("LEFT ENCODER_POSITION: ", Integer.toString(Actuators.getLeftDriveMotor().getEncPosition()));
-//		SmartDashboard.putString("LEFT ENCODER_VELOCITY: ", Integer.toString(Actuators.getLeftDriveMotor().getEncVelocity()));
-		for(double area : Target.getArea()){
-			SmartDashboard.putNumber("GOAL_AREA", area);
-			System.out.println("GOAL AREA "+area);
-		}
-		//AutonMain.test();
+
 		//***************************************************************************
 //		if(Gamepad.primary.getRB()){
 //			//if using PID in CANTalons
