@@ -75,7 +75,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) chooser.getSelected();
-
+		AutonMain.init();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -93,23 +93,27 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
+		AutonMain.test();
+
 	}
 
 	private boolean pastShift;
 	
 	public void teleopInit() {
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		/*if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		//Arm.init();
 		pastShift = false;
 		
 		//TODO:TEST CODE
-		//Actuators.teleopInit();
+
+		 */	
+		Actuators.teleopInit();
 	}
 
 	/**
@@ -117,6 +121,8 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void teleopPeriodic() {
+		AutonMain.test();
+		/*
 		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
 //TODO: TEST ARM CODE
@@ -150,7 +156,7 @@ public class Robot extends IterativeRobot {
 //		}
 		
 		
-
+*/
 	}
 
 	/**
