@@ -3,6 +3,7 @@ package org.usfirst.frc.team245.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
+import com.github.adambots.stronghold2016.auton.AutonMain;
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
 import com.github.adambots.stronghold2016.drive.Drive;
@@ -34,19 +35,20 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		Actuators.init();
-		Sensors.init();
-		Shooter.init();
-		Drive.init();//does not have anything
-		Target.init();//Using Grip
-		AutoTarget.init();//does not contain anything
+		
+		//TODO: Uncomment inits
+		//Sensors.init();
+		//Shooter.init();
+		//Drive.init();//does not have anything
+		//Target.init();//Using Grip
+		//AutoTarget.init();//does not contain anything
 		chooser = new SendableChooser();
 		compressor = new Compressor();
 
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		
+		Actuators.init();
 	}
 
 	/**
@@ -75,7 +77,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) chooser.getSelected();
-
+		AutonMain.init();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -93,53 +95,74 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		AutonMain.test();
+
 	}
 
-	private boolean isShooterLoaded;
+	private boolean pastShift;
+	
 	public void teleopInit() {
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		/*if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		Arm.init();
-		isShooterLoaded = true;
+		//Arm.init();
+		pastShift = false;
+		
+		//TODO:TEST CODE
+		 */	
+		Actuators.teleopInit();
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
+	
 	public void teleopPeriodic() {
+		AutonMain.test();
+		/*
 		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
+//TODO: TEST ARM CODE
+//		Arm.moveArm(Gamepad.secondary.getRightY());
+//
+//		Arm.rollers(Gamepad.primary.getA(), Gamepad.primary.getB());
+//
+//		Arm.climb(Gamepad.secondary.getX());
 
-		Arm.moveArm(Gamepad.secondary.getRightY());
-
-		Arm.rollers(Gamepad.primary.getA(), Gamepad.primary.getB());
-
-		Arm.climb(Gamepad.secondary.getX());
-
-		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getRightX());
+		//Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
 		
-		if(Gamepad.primary.getLB()){
+		if(Gamepad.primary.getLB() && pastShift == false){
 			Drive.shift();
+			pastShift = Gamepad.primary.getLB();
+		}else if(!Gamepad.primary.getLB()){
+			pastShift = Gamepad.primary.getLB();
 		}
+		//TEST CODE *****************************************************************
+		SmartDashboard.putString("RIGHT ENCODER_POSITION: ", Integer.toString(Actuators.getRightDriveMotor().getEncPosition()));
+		SmartDashboard.putString("RIGHT ENCODER_VELOCITY: ", Integer.toString(Actuators.getRightDriveMotor().getEncVelocity()));
+		SmartDashboard.putString("LEFT ENCODER_POSITION: ", Integer.toString(Actuators.getLeftDriveMotor().getEncPosition()));
+		SmartDashboard.putString("LEFT ENCODER_VELOCITY: ", Integer.toString(Actuators.getLeftDriveMotor().getEncVelocity()));
 		
-		if(Gamepad.primary.getRB()){
-			//if using PID in CANTalons
-			//Shooter.loadShooter();
-			//if using PID class on roborio
-			isShooterLoaded = Shooter.loadShooter(0);
-		}else if(!isShooterLoaded){
-			isShooterLoaded = Shooter.loadShooter(0);
-		}
-		else{
-			Shooter.stopLoadShooter();
-		}
+		AutonMain.test();
+		//***************************************************************************
+//		if(Gamepad.primary.getRB()){
+//			//if using PID in CANTalons
+//			//Shooter.loadShooter();
+//			//if using PID class on roborio
+//			isShooterLoaded = Shooter.loadShooter(0);
+//		}else if(!isShooterLoaded){
+//			isShooterLoaded = Shooter.loadShooter(0);
+//		}
+//		else{
+//			Shooter.stopLoadShooter();
+//		}
 		
 		
-
+*/
 	}
 
 	/**
