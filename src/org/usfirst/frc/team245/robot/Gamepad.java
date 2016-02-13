@@ -54,9 +54,13 @@ public class Gamepad {
 	 */
 	private static final int AXIS_LEFT_Y = 1;
 	/**
-	 * XBOX 360 Trigger Axis (right - left)
+	 * XBOX 360 Trigger Axis (LEFT)
 	 */
-	public static final int AXIS_TRIGGERS = 3;
+	public static final int LEFT_AXIS_TRIGGERS = 2;
+	/**
+	 * XBOX 360 Trigger Axis (RIGHT)
+	 */
+	public static final int RIGHT_AXIS_TRIGGERS = 3;
 	/**
 	 * XBOX 360 Right Horizontal Axis (Left=-1, Right=1)
 	 */
@@ -74,7 +78,8 @@ public class Gamepad {
 	/**
 	 * Creates a new Joystick instance on the correct driver port.
 	 *
-	 * @param port The joystick port number.
+	 * @param port
+	 *            The joystick port number.
 	 */
 	private Gamepad(int port) {
 		joy = new Joystick(port);
@@ -85,7 +90,7 @@ public class Gamepad {
 	}
 
 	public double getTriggers() {
-		return deaden(joy.getRawAxis(AXIS_TRIGGERS) * 2) / 2;
+		return deaden(joy.getRawAxis(LEFT_AXIS_TRIGGERS)-joy.getRawAxis(RIGHT_AXIS_TRIGGERS));
 	}
 
 	public boolean getDPadLeft() {
