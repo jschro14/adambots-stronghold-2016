@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) chooser.getSelected();
-		AutonMain.autonInit();
+		AutonMain.init();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -95,7 +95,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		AutonMain.autonDriveTest();
+		AutonMain.test();
 
 	}
 
@@ -113,19 +113,8 @@ public class Robot extends IterativeRobot {
 		pastShift = false;
 		
 		//TODO:TEST CODE
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	*/	
-=======
+		 */	
 		Actuators.teleopInit();
->>>>>>> Adambots-245/test-code
-=======
-		Actuators.teleopInit();
->>>>>>> Adambots-245/test-code
-=======
-		Actuators.teleopInit();
->>>>>>> Adambots-245/test-code
 	}
 
 	/**
@@ -133,7 +122,7 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void teleopPeriodic() {
-		AutonMain.autonDriveTest();
+		AutonMain.test();
 		/*
 		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
