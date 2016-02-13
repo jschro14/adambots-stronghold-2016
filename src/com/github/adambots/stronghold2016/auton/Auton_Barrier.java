@@ -11,6 +11,12 @@ public class Auton_Barrier {
 public Auton_Barrier(){
 	
 }
+/**
+ * 
+ * @param dBCI  array of chars from the drive station telling what category of barrier is in what spot on the field
+ * @param dBCNI tells which number of the category is in that position
+ * @param cPN current position after the positioning code is done
+ */
 public Auton_Barrier(char[] dBCI, int[] dBCNI,int cPN){
 	defenseCat=dBCI;
 	catNumber=dBCNI;
@@ -24,6 +30,12 @@ public Auton_Barrier(char[] dBCI, int[] dBCNI,int cPN){
 	bAutons.set(6,  new Barrier());
 	bAutons.set(7,  new Barrier());
 }
+/**
+ * 
+ * @param dBCI  array of chars from the drive station telling what category of barrier is in what spot on the field
+ * @param dBCNI tells which number of the category is in that position
+ * @param cPN current position after the positioning code is done
+ */
 public void setInput(char[] dBCI, int[] dBCNI,int cPN){
 	defenseCat=dBCI;
 	catNumber=dBCNI;
@@ -37,6 +49,9 @@ public void setInput(char[] dBCI, int[] dBCNI,int cPN){
 	bAutons.set(6,  new Barrier());
 	bAutons.set(7,  new Barrier());
 }
+/**
+ * sorts the barrier code finding the correct one to do
+ */
 public void autonBarrierGo(){
 	for(int x=0;x<8;x++){
 		if(bAutons.get(x).getCat()==defenseCat[curPos]&& bAutons.get(x).getCatNum()==catNumber[curPos]){
