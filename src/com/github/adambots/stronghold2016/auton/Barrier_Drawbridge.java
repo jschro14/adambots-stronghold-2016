@@ -21,37 +21,38 @@ public class Barrier_Drawbridge extends Barrier {
 		down = false;
 		crossingDistance = 20;
 		crossed = false;
-		super.cat='C';
-		super.catNum=1;
+		super.cat = 'C';
+		super.catNum = 1;
 	}
 
 	public void go() {
+		if (Sensors.getArmMaxLimitSwitch().get()) {
+			raised = true;
+		}
 		if (!raised) {
 			Arm.moveArm(1);
 		}
-		if (Sensors.getArmMaxLimitSwitch().get()) {
-			raised = true;
+		if (Sensors.getDriveEncoderLeft().getDistance() >= distance) {
+			there = true;
+			Sensors.getDriveEncoderLeft().reset();
 		}
 		if (raised && !there) {
 			Drive.drive(1, 0);
 		}
-		if (Sensors.getDriveEncoderLeft().getDistance() >= distance) {
-			there = true;
+		if (Sensors.getArmMinLimitSwitch().get()) {
+			down = true;
 			Sensors.getDriveEncoderLeft().reset();
 		}
 		if (there && !down) {
 			Arm.moveArm(-1);
 			Drive.drive(-1, 0);
 		}
-		if (Sensors.getArmMinLimitSwitch().get()) {
-			down = true;
-			Sensors.getDriveEncoderLeft().reset();
+		if (Sensors.getDriveEncoderLeft().getDistance() >= crossingDistance) {
+			crossed = true;
 		}
 		if (down && !crossed) {
 			Drive.drive(1, 0);
 		}
-		if (Sensors.getDriveEncoderLeft().getDistance() >= crossingDistance) {
-			crossed = true;
-		}
+
 	}
 }
