@@ -76,15 +76,15 @@ public class Actuators {
 	public static void init() {
 		// TODO: Change ID's
 		// Motors
-		rightDriveMotor = new CANTalon(3);
+		rightDriveMotor = new CANTalon(2);
 		rightDriveMotor = initCANTalon(rightDriveMotor, FeedbackDevice.QuadEncoder, RIGHT_DIVE_REVERSE_SENSOR, 
 				CODES_PER_REV, DRIVE_MOTOR_ACCEPTABLE_ERROR, RIGHT_DRIVE_KP, RIGHT_DRIVE_KI, RIGHT_DRIVE_KD);
-		rightDriveMotor2 = new CANTalon(0);
+		rightDriveMotor2 = new CANTalon(3);
 		rightDriveMotor2.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rightDriveMotor2.setInverted(true);
 		rightDriveMotor2.set(rightDriveMotor.getDeviceID());
 
-		leftDriveMotor = new CANTalon(2);
+		leftDriveMotor = new CANTalon(0);
 		leftDriveMotor = initCANTalon(leftDriveMotor, FeedbackDevice.QuadEncoder, LEFT_DIVE_REVERSE_SENSOR, 
 				CODES_PER_REV, DRIVE_MOTOR_ACCEPTABLE_ERROR, LEFT_DRIVE_KP, LEFT_DRIVE_KI, LEFT_DRIVE_KD);
 		leftDriveMotor.setInverted(true);
@@ -97,7 +97,7 @@ public class Actuators {
 		armWinchMotor2 = new VictorSP(5);
 		armWinchMotor2.setInverted(true);
 
-		armAngleMotor = new CANTalon(6);
+		armAngleMotor = new CANTalon(4);
 		armAngleMotor = initCANTalon(armAngleMotor, FeedbackDevice.AnalogPot, ARM_REVERSE_SENSOR, 
 				ARM_POT_TURNS_PER_REV, ARM_ACCEPTABLE_EROR, ARM_ANGLE_KP, ARM_ANGLE_KI, ARM_ANGLE_KD);
 		//TODO: Use string pot with CANTalon
