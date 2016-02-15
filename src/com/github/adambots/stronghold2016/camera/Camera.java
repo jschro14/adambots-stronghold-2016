@@ -159,6 +159,7 @@ public class Camera {
 		}
 		return contours;
 	}
+	
 	public static MatOfPoint getBestContour() {
 
 		ArrayList<MatOfPoint> contours = getContours();

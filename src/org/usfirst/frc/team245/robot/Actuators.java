@@ -93,8 +93,8 @@ public class Actuators {
 		leftDriveMotor2.setInverted(true);
 		leftDriveMotor2.set(leftDriveMotor.getDeviceID());
 
-		armWinchMotor1 = new VictorSP(4);
-		armWinchMotor2 = new VictorSP(5);
+		armWinchMotor1 = new VictorSP(12);
+		armWinchMotor2 = new VictorSP(13);
 		armWinchMotor2.setInverted(true);
 
 		armAngleMotor = new CANTalon(4);
@@ -103,17 +103,17 @@ public class Actuators {
 		//TODO: Use string pot with CANTalon
 		
 
-		boulderIntakeMotor = new VictorSP(7);
+		boulderIntakeMotor = new VictorSP(4);
 
-		catapultMotor = new VictorSP(8);
+		catapultMotor = new VictorSP(14);
 
 		// Solenoids
-		driveShiftPneumatic = new Solenoid(2);
+		driveShiftPneumatic = new Solenoid(0);
 		winchRatchetPneumatic = new Solenoid(1);
 	}
 	
 	/**
-	 * All initiliztaion for teleop
+	 * All initialization for teleop
 	 */
 	public static void teleopInit(){
 		
