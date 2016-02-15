@@ -35,19 +35,19 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		
+		chooser = new SendableChooser();
+		compressor = new Compressor();
 		//TODO: Uncomment inits
 		//Sensors.init();
 		//Shooter.init();
-		//Drive.init();//does not have anything
+		Drive.init();//does not have anything
+		Actuators.init();
 		//AutoTarget.init();//does not contain anything
-		chooser = new SendableChooser();
-		compressor = new Compressor();
+		
 
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		//Actuators.init();
 	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -121,7 +121,7 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void teleopPeriodic() {
-		AutonMain.test();
+		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
 		/*
 		//TODO: Check joystick mapping
 		Scheduler.getInstance().run();
@@ -132,7 +132,7 @@ public class Robot extends IterativeRobot {
 //
 //		Arm.climb(Gamepad.secondary.getX());
 
-		//Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
+		
 		
 //		if(Gamepad.primary.getLB() && pastShift == false){
 //			Drive.shift();
