@@ -38,7 +38,7 @@ public class AutonMain {
 		SmartDashboard.putNumber("RIGHT_ERROR", Actuators.getRightDriveMotor().getError());
 		Actuators.getLeftDriveMotor().changeControlMode(TalonControlMode.Position);
 		final int testTarget = 1;
-		Actuators.getLeftDriveMotor().set(testTarget);
+		Actuators.getLeftDriveMotor().set(-testTarget);
 		Actuators.getLeftDriveMotor().enable();
 		
 		Actuators.getRightDriveMotor().changeControlMode(TalonControlMode.Position);
