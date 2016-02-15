@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.PIDController;
 public class Shooter {
 	private static final double LOAD_POSITION = 0.0; 
 	
-	private static boolean isCocked;
 	private  static final double Kp = 1;
 	private static final double Ki = 1;
 	private static final double Kd = 1;
@@ -23,7 +22,6 @@ public class Shooter {
 	 * Initializes PID for arm and checks if shooter is cocked
 	 */
 	public static void init() {
-		isCocked = Sensors.getCatapultLimitSwitch().get();
 		armPID = new PIDController(Kp, Ki, Kd, Sensors.getArmPot(), 
 						Actuators.getArmAngleMotor());
 	}
@@ -91,44 +89,21 @@ public class Shooter {
 		return isShooterLoaded;
 	}
 	
-	/**
-	 * Only loads shooter
-	 * @return boolean -  state of the shooter (if it is cocked or not)
-	 */
-	public static boolean cock() {
-		int speed = 0;
-
-		// if limit switch is pressed
-		if (Sensors.getCatapultLimitSwitch().get()) {
-			// stop motor, and catapult is cocked
-			Actuators.getCatapultMotor().set(Actuators.STOP_MOTOR);
-			isCocked = true;
-			
-		}else{
-			// if limit switch is not pressed
-			isCocked = false;
-			// run motor at speed, catapult is not cocked
-			Actuators.getCatapultMotor().set(speed);
-		}
-		return isCocked;
-
-	}
 	
 	/**
 	 * Shoots ball, and loads shooter if it is not loaded
 	 * @return boolean - did robot shoot
 	 */
-	public static boolean shoot() {
-		boolean didShoot = false;
-		int speed = 0;
-		// if catapult is cocked, run motor at speed
-		if (isCocked) {
+	public static boolean shoot(boolean shouldShoot) {
+		double speed = Actuators.MAX_MOTOR_SPEED;
+		boolean isLoaded = Sensors.getCatapultLimitSwitch().get();
+		if(shouldShoot && isLoaded){
 			Actuators.getCatapultMotor().set(speed);
-			// catapult is no longer cocked
-			isCocked = false;
-		} else{
-			didShoot = cock();
+		}else if(!isLoaded){
+			Actuators.getCatapultMotor().set(speed);
+		}else if(isLoaded){
+			Actuators.getCatapultMotor().set(Actuators.STOP_MOTOR);
 		}
-		return didShoot;
+		return isLoaded;
 	}
 }

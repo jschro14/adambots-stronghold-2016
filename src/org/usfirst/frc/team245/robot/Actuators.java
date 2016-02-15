@@ -21,8 +21,8 @@ public class Actuators {
 	private static final int ARM_ACCEPTABLE_EROR = 0;
 	private static final int ARM_POT_TURNS_PER_REV = 7;
 	private static final boolean ARM_REVERSE_SENSOR = false;
-	public static final double MAX_MOTOR_POSITION= 0.0;
-	public static final double MIN_MOTOR_POSITION= 0.0;
+	public static final double ARM_MAX_MOTOR_POSITION= 0.0;
+	public static final double ARM_MIN_MOTOR_POSITION= 0.0;
 	
 	//CANTalon constants for motors
 	private static final float NOMINAL_REVERSE_VOLTAGE = -0f;
@@ -30,19 +30,19 @@ public class Actuators {
 	private static final int DRIVE_MOTOR_ACCEPTABLE_ERROR = 0;
 	private static final float PEAK_REVERSE_VOLTAGE = -12f;
 	private static final float PEAK_FORWARD_VOLTAGE = +12f;
-	private static final int CODES_PER_REV = (int) (720);
+	private static final int CODES_PER_REV = (int) (620);
 	
 	//The PID constants for right drive motors
-	private static final double RIGHT_DRIVE_KP = 1;
+	private static final double RIGHT_DRIVE_KP = 2;
 	private static final double RIGHT_DRIVE_KI = 0;
-	private static final double RIGHT_DRIVE_KD = 0;
+	private static final double RIGHT_DRIVE_KD = 0.025;
 	private static final boolean RIGHT_DRIVE_REVERSE_SENSOR = true;
 	
 	
 	//The PID constants for left drive motors
-	private static final double LEFT_DRIVE_KP = 1;
+	private static final double LEFT_DRIVE_KP = 2;
 	private static final double LEFT_DRIVE_KI = 0;
-	private static final double LEFT_DRIVE_KD = 0;
+	private static final double LEFT_DRIVE_KD = 0.025;
 	private static final boolean LEFT_DRIVE_REVERSE_SENSOR = true;
 	
 	//Maximum and minimum motor speed constants and constant to stop motor
