@@ -27,8 +27,10 @@ public class Drive {
 	 * @param turningSpeed
 	 */
 	public static void drive(double speed, double turningSpeed) {
+		
 		Actuators.getLeftDriveMotor().changeControlMode(TalonControlMode.PercentVbus);
 		Actuators.getRightDriveMotor().changeControlMode(TalonControlMode.PercentVbus);
+		
 		double leftSpeed = Math.min(Actuators.MAX_MOTOR_SPEED, speed - turningSpeed);
 		leftSpeed = Math.max(Actuators.MIN_MOTOR_SPEED, leftSpeed);
 		double rightSpeed = Math.min(Actuators.MAX_MOTOR_SPEED, speed + turningSpeed);
@@ -42,6 +44,9 @@ public class Drive {
 	 * @param speed
 	 */
 	public static void drive(double speed) {
+		Actuators.getLeftDriveMotor().changeControlMode(TalonControlMode.PercentVbus);
+		Actuators.getRightDriveMotor().changeControlMode(TalonControlMode.PercentVbus);
+		
 		double leftSpeed = Math.min(Actuators.MAX_MOTOR_SPEED, speed);
 		leftSpeed = Math.max(Actuators.MIN_MOTOR_SPEED, leftSpeed);
 		double rightSpeed = Math.min(Actuators.MAX_MOTOR_SPEED, speed);
@@ -69,6 +74,7 @@ public class Drive {
 		Actuators.getRightDriveMotor().set(rightDistance);
 		Actuators.getRightDriveMotor().enable();
 	}
+	
 	
 	public static void shift(){
 		
