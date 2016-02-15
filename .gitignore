@@ -5,3 +5,5 @@
 *.jar
 
 sysProps.xml
+
+*.png

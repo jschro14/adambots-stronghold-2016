@@ -4,8 +4,6 @@ package org.usfirst.frc.team245.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import com.github.adambots.stronghold2016.arm.Arm;
 import com.github.adambots.stronghold2016.auton.AutonMain;
-import com.github.adambots.stronghold2016.camera.AutoTarget;
-import com.github.adambots.stronghold2016.camera.OpenCVExampleCode;
 import com.github.adambots.stronghold2016.drive.Drive;
 import com.github.adambots.stronghold2016.shooter.Shooter;
 
@@ -35,19 +33,19 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		
+		chooser = new SendableChooser();
+		compressor = new Compressor();
 		//TODO: Uncomment inits
 		//Sensors.init();
 		//Shooter.init();
-		//Drive.init();//does not have anything
+		Drive.init();//does not have anything
+		Actuators.init();
 		//AutoTarget.init();//does not contain anything
-		chooser = new SendableChooser();
-		compressor = new Compressor();
+		
 
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		//Actuators.init();
 	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -75,7 +73,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		autonomousCommand = (Command) chooser.getSelected();
-		AutonMain.init();
+		Actuators.teleopInit();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -105,15 +103,15 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		/*if (autonomousCommand != null)
-			autonomousCommand.cancel();
+//		if (autonomousCommand != null)
+//			autonomousCommand.cancel();
 		//Arm.init();
 		pastShift = false;
 		
 		//TODO:TEST CODE
 
-		 */	
-		Actuators.teleopInit();
+		 	
+		 Actuators.teleopInit();
 	}
 
 	/**
@@ -121,10 +119,19 @@ public class Robot extends IterativeRobot {
 	 */
 	
 	public void teleopPeriodic() {
-		AutonMain.test();
-		/*
+		
+			
+		
+		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
+		if(Gamepad.primary.getLB() && pastShift == false){
+			Drive.shift();
+			pastShift = Gamepad.primary.getLB();
+		}else if(!Gamepad.primary.getLB()){
+			pastShift = Gamepad.primary.getLB();
+		}
+		
 		//TODO: Check joystick mapping
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run();
 //TODO: TEST ARM CODE
 //		Arm.moveArm(Gamepad.secondary.getRightY());
 //
@@ -132,14 +139,9 @@ public class Robot extends IterativeRobot {
 //
 //		Arm.climb(Gamepad.secondary.getX());
 
-		//Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
 		
-//		if(Gamepad.primary.getLB() && pastShift == false){
-//			Drive.shift();
-//			pastShift = Gamepad.primary.getLB();
-//		}else if(!Gamepad.primary.getLB()){
-//			pastShift = Gamepad.primary.getLB();
-//		}
+		
+
 		//TEST CODE *****************************************************************
 
 		//***************************************************************************
@@ -156,7 +158,7 @@ public class Robot extends IterativeRobot {
 //		}
 		
 		
-*/
+
 	}
 
 	/**
