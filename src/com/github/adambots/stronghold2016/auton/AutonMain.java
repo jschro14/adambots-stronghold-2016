@@ -40,7 +40,7 @@ public class AutonMain {
 	 * @param dBCNI tells which number of the category is in that position for auton barrier class
 	 * @param cPN current position after the positioning code is done for auton barrier class
 	 */
-	public static void setInput(char[] dBCI, int[] dBCNI,int cPN){
+	public static void go(char[] dBCI, int[] dBCNI,int cPN){
 		Auton_Barrier.autonBarrierGo(dBCI, dBCNI, cPN);
 	}
 	public static void test(){
