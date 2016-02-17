@@ -34,7 +34,7 @@ public class AutonMain {
 	}
 	
 	public static void test(){
-		SmartDashboard.putNumber("LEFT_ERROR", Actuators.getLeftDriveMotor().getError());
+		/*SmartDashboard.putNumber("LEFT_ERROR", Actuators.getLeftDriveMotor().getError());
 		SmartDashboard.putNumber("RIGHT_ERROR", Actuators.getRightDriveMotor().getError());
 		Actuators.getLeftDriveMotor().changeControlMode(TalonControlMode.Position);
 		final int testTarget = 1;
@@ -44,6 +44,7 @@ public class AutonMain {
 		Actuators.getRightDriveMotor().changeControlMode(TalonControlMode.Position);
 		Actuators.getRightDriveMotor().set(testTarget);
 		Actuators.getRightDriveMotor().enable();
-		
+		*/ autonPosition position = new autonPosition(3,3);
+			position.autonType();
 	}
 }
