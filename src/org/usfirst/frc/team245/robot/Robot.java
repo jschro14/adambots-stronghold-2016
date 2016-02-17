@@ -9,12 +9,10 @@ import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
 import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
 
 import com.github.adambots.stronghold2016.auton.AutonMain;
-<<<<<<< HEAD
 
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
-=======
->>>>>>> refs/remotes/Adambots-245/master
+
 import com.github.adambots.stronghold2016.drive.Drive;
 import com.github.adambots.stronghold2016.shooter.Shooter;
 
@@ -57,7 +55,7 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-<<<<<<< HEAD
+
 
 		chooser.addObject("ChevalDeFrise", new Barrier_ChevalDeFrise() );
 		chooser.addObject("Drawbridge", new Barrier_Drawbridge() );
@@ -65,8 +63,7 @@ public class Robot extends IterativeRobot {
 
 		Actuators.init();
 
-=======
->>>>>>> refs/remotes/Adambots-245/master
+
 	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.

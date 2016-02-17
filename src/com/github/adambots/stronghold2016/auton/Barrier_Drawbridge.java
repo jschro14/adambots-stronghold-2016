@@ -31,13 +31,7 @@ public class Barrier_Drawbridge extends Barrier {
 	}
 
 	public void go() {
-<<<<<<< HEAD
-=======
-		
-		
-		
-		
->>>>>>> refs/remotes/Adambots-245/master
+
 		if (Sensors.getArmMaxLimitSwitch().get()) {
 			raised = true;
 		}
@@ -55,23 +49,13 @@ public class Barrier_Drawbridge extends Barrier {
 			Drive.drive(Actuators.STOP_MOTOR);
 			there = true;
 		}
-<<<<<<< HEAD
-		if (raised && !there) {
-			Drive.drive(1, 0);
-		}
-		if (Sensors.getArmMinLimitSwitch().get()) {
-			down = true;
-			Sensors.getDriveEncoderLeft().reset();
-		}
-		if (there && !down) {
-			Arm.moveArm(-1);
-			Drive.drive(-1, 0);
-=======
+
+
 		if (there && !down) {
 			Arm.moveArm(-1);		}
 		if (Sensors.getArmMinLimitSwitch().get()) {
 			down = true;
->>>>>>> refs/remotes/Adambots-245/master
+
 		}
 		leftError = Actuators.getLeftDriveMotor().getError();
 		leftError = Math.abs(leftError);
