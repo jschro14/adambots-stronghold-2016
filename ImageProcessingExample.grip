@@ -1,27 +1,18 @@
 <grip:Pipeline>
   <sources>
-    <grip:ImageFile>
-      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/14.jpg"/>
-    </grip:ImageFile>
-    <grip:ImageFile>
-      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/32.jpg"/>
-    </grip:ImageFile>
-    <grip:ImageFile>
-      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/263.jpg"/>
-    </grip:ImageFile>
-    <grip:ImageFile>
-      <property name="path" value="/Users/robinonsay/Documents/Java-workspace/adambots-stronghold-2016/RealFullField/376.jpg"/>
-    </grip:ImageFile>
+    <grip:Camera>
+      <property name="deviceNumber" value="0"/>
+    </grip:Camera>
   </sources>
   <steps>
     <grip:Step name="CV resize">
       <grip:Input step="0" socket="0"/>
       <grip:Input step="0" socket="1"/>
       <grip:Input step="0" socket="2">
-        <value>0.5</value>
+        <value>0.1</value>
       </grip:Input>
       <grip:Input step="0" socket="3">
-        <value>0.5</value>
+        <value>0.1</value>
       </grip:Input>
       <grip:Input step="0" socket="4">
         <value>INTER_LINEAR</value>
@@ -63,7 +54,7 @@
         <value>400.0</value>
       </grip:Input>
       <grip:Input step="3" socket="2">
-        <value>0</value>
+        <value>0.0</value>
       </grip:Input>
       <grip:Input step="3" socket="3">
         <value>50.0</value>
@@ -75,7 +66,7 @@
         <value>0.0</value>
       </grip:Input>
       <grip:Input step="3" socket="6">
-        <value>1000</value>
+        <value>1000.0</value>
       </grip:Input>
       <grip:Input step="3" socket="7">
         <value>
@@ -112,7 +103,15 @@
   </steps>
   <connections>
     <grip:Connection>
-      <grip:Output source="1" socket="0" previewed="false"/>
+      <grip:Output step="3" socket="0" previewed="true"/>
+      <grip:Input step="4" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="true"/>
+      <grip:Input step="2" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output source="0" socket="0" previewed="false"/>
       <grip:Input step="0" socket="0"/>
     </grip:Connection>
     <grip:Connection>
@@ -120,22 +119,14 @@
       <grip:Input step="1" socket="0"/>
     </grip:Connection>
     <grip:Connection>
-      <grip:Output step="1" socket="0" previewed="true"/>
-      <grip:Input step="2" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
       <grip:Output step="2" socket="0" previewed="true"/>
       <grip:Input step="3" socket="0"/>
-    </grip:Connection>
-    <grip:Connection>
-      <grip:Output step="3" socket="0" previewed="true"/>
-      <grip:Input step="4" socket="0"/>
     </grip:Connection>
   </connections>
   <settings>
     <teamNumber>0</teamNumber>
     <publishAddress>roborio-0-frc.local</publishAddress>
-    <deployAddress>roborio-0-frc.local</deployAddress>
+    <deployAddress>roborio-245-frc.local</deployAddress>
     <deployDir>/home/lvuser</deployDir>
     <deployUser>lvuser</deployUser>
     <deployJavaHome>/usr/local/frc/JRE/</deployJavaHome>
