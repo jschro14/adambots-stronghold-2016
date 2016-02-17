@@ -1,7 +1,12 @@
 package com.github.adambots.stronghold2016.auton;
 
 import com.github.adambots.stronghold2016.drive.Drive;
+
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+
 import com.github.adambots.stronghold2016.arm.Arm;
+
+import org.usfirst.frc.team245.robot.Actuators;
 import org.usfirst.frc.team245.robot.Sensors;
 
 public class Barrier_Drawbridge extends Barrier {
@@ -26,16 +31,31 @@ public class Barrier_Drawbridge extends Barrier {
 	}
 
 	public void go() {
+<<<<<<< HEAD
+=======
+		
+		
+		
+		
+>>>>>>> refs/remotes/Adambots-245/master
 		if (Sensors.getArmMaxLimitSwitch().get()) {
 			raised = true;
 		}
 		if (!raised) {
 			Arm.moveArm(1);
 		}
-		if (Sensors.getDriveEncoderLeft().getDistance() >= distance) {
+		double leftError = Actuators.getLeftDriveMotor().getError();
+		leftError = Math.abs(leftError);
+		double rightError = Actuators.getRightDriveMotor().getError();
+		rightError = Math.abs(rightError);
+		there = rightError < 100 && leftError < 100;
+		if(raised && !there){
+			Drive.driveWithPID(distance, distance);
+		}else{
+			Drive.drive(Actuators.STOP_MOTOR);
 			there = true;
-			Sensors.getDriveEncoderLeft().reset();
 		}
+<<<<<<< HEAD
 		if (raised && !there) {
 			Drive.drive(1, 0);
 		}
@@ -46,8 +66,22 @@ public class Barrier_Drawbridge extends Barrier {
 		if (there && !down) {
 			Arm.moveArm(-1);
 			Drive.drive(-1, 0);
+=======
+		if (there && !down) {
+			Arm.moveArm(-1);		}
+		if (Sensors.getArmMinLimitSwitch().get()) {
+			down = true;
+>>>>>>> refs/remotes/Adambots-245/master
 		}
-		if (Sensors.getDriveEncoderLeft().getDistance() >= crossingDistance) {
+		leftError = Actuators.getLeftDriveMotor().getError();
+		leftError = Math.abs(leftError);
+		rightError = Actuators.getRightDriveMotor().getError();
+		rightError = Math.abs(rightError);
+		crossed = rightError < 100 && leftError < 100;
+		if(raised && !crossed){
+			Drive.driveWithPID(crossingDistance, crossingDistance);
+		}else{
+			Drive.drive(Actuators.STOP_MOTOR);
 			crossed = true;
 		}
 		if (down && !crossed) {
