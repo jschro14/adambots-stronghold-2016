@@ -41,8 +41,6 @@ public class AutonMain {
 	 * @param cPN current position after the positioning code is done for auton barrier class
 	 */
 	public static void go(char[] dBCI, int[] dBCNI,int cPN, int start ,int end){
-		AutonPosition position = new AutonPosition(start,end);
-		position.autonType();
 		Auton_Barrier.autonBarrierGo(dBCI, dBCNI, cPN);
 	}
 	public static void test(){
@@ -56,8 +54,7 @@ public class AutonMain {
 		Actuators.getRightDriveMotor().changeControlMode(TalonControlMode.Position);
 		Actuators.getRightDriveMotor().set(testTarget);
 		Actuators.getRightDriveMotor().enable();
-		*/ AutonPosition position = new AutonPosition(3,3);
-			position.autonType();
+		*/ 
 	}
 
 }

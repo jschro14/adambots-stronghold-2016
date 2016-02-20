@@ -9,22 +9,14 @@ import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
 import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
 
 import com.github.adambots.stronghold2016.auton.AutonMain;
-<<<<<<< HEAD
 import com.github.adambots.stronghold2016.auton.Barrier;
-=======
 
->>>>>>> refs/remotes/Adambots-245/master
 import com.github.adambots.stronghold2016.auton.Forward;
 import com.github.adambots.stronghold2016.auton.FarLeft;
 import com.github.adambots.stronghold2016.auton.FarRight;
 import com.github.adambots.stronghold2016.auton.Left;
 import com.github.adambots.stronghold2016.auton.Right;
 import com.github.adambots.stronghold2016.auton.SuperRight;
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/Adambots-245/master
-
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
 
