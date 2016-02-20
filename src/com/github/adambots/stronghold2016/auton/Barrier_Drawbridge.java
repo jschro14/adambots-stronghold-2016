@@ -20,6 +20,7 @@ public class Barrier_Drawbridge extends Barrier {
 	boolean crossed; // are we crossed
 
 	public Barrier_Drawbridge() {
+		super();
 		raised = false;
 		distance = 10;
 		there = false;

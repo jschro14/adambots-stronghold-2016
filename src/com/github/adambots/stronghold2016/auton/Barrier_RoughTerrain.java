@@ -12,6 +12,7 @@ public class Barrier_RoughTerrain extends Barrier {
 	boolean crossed;
 
 	public Barrier_RoughTerrain() {
+		super();
 		cat = 'B';
 		catNum = 1;
 		crossDistance = 30;

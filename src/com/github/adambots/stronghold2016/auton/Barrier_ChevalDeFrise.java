@@ -17,6 +17,7 @@ public class Barrier_ChevalDeFrise extends Barrier {
 	boolean crossed; // are we crossed
 
 	public Barrier_ChevalDeFrise() {
+		super();
 		super.cat = 'A';
 		super.catNum = 2;
 		raised = false;
@@ -29,6 +30,7 @@ public class Barrier_ChevalDeFrise extends Barrier {
 	}
 
 	public void go() {
+		
 		double leftError = Actuators.getLeftDriveMotor().getError();
 		leftError = Math.abs(leftError);
 		double rightError = Actuators.getRightDriveMotor().getError();
