@@ -7,14 +7,20 @@ import com.github.adambots.stronghold2016.drive.Drive;
 
 public class Left {
 	static double turnamountL = 0,turnamountR = 0, driveDistance =0,finishDistance = 0;
-	double turned;
-	double inPosition;
-	boolean done;
-	double turned2;
+
+	//double turned;
+	//double inPosition;
+	//boolean done;
+	//double turned2;
+	Position_Optimizer mylesMalanoski;
 	public Left(){
+		mylesMalanoski= new Position_Optimizer();
+
+	
 	}
 	public void go(){
-			turned  = Actuators.getLeftDriveMotor().getError();
+		mylesMalanoski.leftClassCode(turnamountL, turnamountR, driveDistance, finishDistance);
+			/**turned  = Actuators.getLeftDriveMotor().getError();
 			inPosition  = Actuators.getLeftDriveMotor().getError();
 			turned2  = Actuators.getLeftDriveMotor().getError();
 			turned  = Actuators.getLeftDriveMotor().getError();
@@ -39,5 +45,6 @@ public class Left {
 			else{
 				Drive.drive(Actuators.STOP_MOTOR);
 			}
+			**/
 		}
 }
