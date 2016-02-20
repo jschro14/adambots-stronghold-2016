@@ -10,11 +10,11 @@ import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
 
 import com.github.adambots.stronghold2016.auton.AutonMain;
 import com.github.adambots.stronghold2016.auton.Forward;
-import com.github.adambots.stronghold2016.auton.farLeft;
-import com.github.adambots.stronghold2016.auton.farRight;
-import com.github.adambots.stronghold2016.auton.left;
-import com.github.adambots.stronghold2016.auton.right;
-import com.github.adambots.stronghold2016.auton.superRight;
+import com.github.adambots.stronghold2016.auton.FarLeft;
+import com.github.adambots.stronghold2016.auton.FarRight;
+import com.github.adambots.stronghold2016.auton.Left;
+import com.github.adambots.stronghold2016.auton.Right;
+import com.github.adambots.stronghold2016.auton.SuperRight;
 
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
@@ -53,11 +53,11 @@ public class Robot extends IterativeRobot {
 		chooser = new SendableChooser();
 		compressor = new Compressor();
 		chooser.addDefault("Forward", new Forward());
-		chooser.addObject("left two positions", new farLeft());
-		chooser.addObject("left one positions", new left());
-		chooser.addObject("right one positions", new right());
-		chooser.addObject("right two positions", new farRight());
-		chooser.addObject("right three positions", new superRight());
+		chooser.addObject("left two positions", new FarLeft());
+		chooser.addObject("left one positions", new Left());
+		chooser.addObject("right one positions", new Right());
+		chooser.addObject("right two positions", new FarRight());
+		chooser.addObject("right three positions", new SuperRight());
 		//TODO: Uncomment inits
 		//Sensors.init();
 		//Shooter.init();
