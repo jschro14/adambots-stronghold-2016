@@ -9,16 +9,25 @@ import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
 import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
 
 import com.github.adambots.stronghold2016.auton.AutonMain;
+<<<<<<< HEAD
 import com.github.adambots.stronghold2016.auton.Barrier;
+=======
+
+>>>>>>> refs/remotes/Adambots-245/master
 import com.github.adambots.stronghold2016.auton.Forward;
 import com.github.adambots.stronghold2016.auton.FarLeft;
 import com.github.adambots.stronghold2016.auton.FarRight;
 import com.github.adambots.stronghold2016.auton.Left;
 import com.github.adambots.stronghold2016.auton.Right;
 import com.github.adambots.stronghold2016.auton.SuperRight;
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/Adambots-245/master
 
 import com.github.adambots.stronghold2016.camera.AutoTarget;
 import com.github.adambots.stronghold2016.camera.Target;
+
 
 import com.github.adambots.stronghold2016.drive.Drive;
 import com.github.adambots.stronghold2016.shooter.Shooter;
@@ -159,28 +168,29 @@ SmartDashboard.putBoolean("barrier working", activeB.running());
 			
 		
 		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
-		if(Gamepad.primary.getB() && pastShift == false){
+		if(Gamepad.primary.getLB() && pastShift == false){
 			Drive.shift();
-			pastShift = Gamepad.primary.getB();
-		}else if(!Gamepad.primary.getB()){
-			pastShift = Gamepad.primary.getB();
+			pastShift = Gamepad.primary.getLB();
+		}else if(!Gamepad.primary.getLB()){
+			pastShift = Gamepad.primary.getLB();
 		}
 		
-//TODO: Check joystick mapping
-		Scheduler.getInstance().run();
+		//TODO: Check joystick mapping
+//		Scheduler.getInstance().run();
 //TODO: TEST ARM CODE
-		Arm.moveArm(Gamepad.secondary.getLeftY());
+//		Arm.moveArm(Gamepad.secondary.getRightY());
+//
+//		Arm.rollers(Gamepad.primary.getA(), Gamepad.primary.getB());
+//
+//		Arm.climb(Gamepad.secondary.getX());
 
-		Arm.rollers(Gamepad.secondary.getLB(), Gamepad.secondary.getRB());
-
-		Arm.climb(Gamepad.secondary.getA());
-
+		
 		
 
 		//TEST CODE *****************************************************************
 
 		//***************************************************************************
-//		if(Gamepad.primary.getA()){
+//		if(Gamepad.primary.getRB()){
 //			//if using PID in CANTalons
 //			//Shooter.loadShooter();
 //			//if using PID class on roborio

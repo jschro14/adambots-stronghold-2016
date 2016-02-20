@@ -7,15 +7,16 @@ import com.github.adambots.stronghold2016.drive.Drive;
 
 public class SuperRight {
 	static double turnamountL = 10,turnamountR = 10, driveDistance = 20, finishDistance = 20;
-	double turned;
-	double inPosition;
-	boolean done;
-	double turned2;
 	
+
+	Position_Optimizer mylesMalanoski;
 	public SuperRight(){
+		mylesMalanoski= new Position_Optimizer();
+
 	}
 	public void go(){
-		turned  = Actuators.getLeftDriveMotor().getError();
+		mylesMalanoski.rightClassCode(turnamountL, turnamountR, driveDistance, finishDistance);
+		/**turned  = Actuators.getLeftDriveMotor().getError();
 		inPosition  = Actuators.getLeftDriveMotor().getError();
 		turned2  = Actuators.getLeftDriveMotor().getError();
 		turned  = Actuators.getLeftDriveMotor().getError();
@@ -39,7 +40,7 @@ public class SuperRight {
 			Drive.driveWithPID(finishDistance, finishDistance);
 		else{
 			Drive.drive(Actuators.STOP_MOTOR);
-		}
+		}**/
 	}
 
 
