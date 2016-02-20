@@ -7,18 +7,12 @@ import com.github.adambots.stronghold2016.drive.Drive;
 
 public class SuperRight {
 	static double turnamountL = 10,turnamountR = 10, driveDistance = 20, finishDistance = 20;
-	double turned;
-	double inPosition;
-	boolean done;
-	double turned2;
-<<<<<<< HEAD
+	
+
 	Position_Optimizer mylesMalanoski;
 	public SuperRight(){
 		mylesMalanoski= new Position_Optimizer();
-=======
-	
-	public SuperRight(){
->>>>>>> refs/remotes/Adambots-245/master
+
 	}
 	public void go(){
 		mylesMalanoski.rightClassCode(turnamountL, turnamountR, driveDistance, finishDistance);
