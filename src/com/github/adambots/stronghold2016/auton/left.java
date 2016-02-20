@@ -7,6 +7,7 @@ import com.github.adambots.stronghold2016.drive.Drive;
 
 public class Left {
 	static double turnamountL = 0,turnamountR = 0, driveDistance =0,finishDistance = 0;
+<<<<<<< HEAD
 	//double turned;
 	//double inPosition;
 	//boolean done;
@@ -14,6 +15,13 @@ public class Left {
 	Position_Optimizer mylesMalanoski;
 	public Left(){
 		mylesMalanoski= new Position_Optimizer();
+=======
+	double turned;
+	double inPosition;
+	boolean done;
+	double turned2;
+	public Left(){
+>>>>>>> refs/remotes/Adambots-245/master
 	}
 	public void go(){
 		mylesMalanoski.leftClassCode(turnamountL, turnamountR, driveDistance, finishDistance);

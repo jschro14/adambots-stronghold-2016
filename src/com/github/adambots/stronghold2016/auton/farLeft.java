@@ -7,6 +7,7 @@ import com.github.adambots.stronghold2016.drive.Drive;
 
 public class FarLeft {
 	static double turnamountL = 0, turnamountR = 0, driveDistance =0,finishDistance = 0;
+<<<<<<< HEAD
 	//double turned;
 	//double inPosition;
 	//boolean done;
@@ -14,6 +15,13 @@ public class FarLeft {
 	Position_Optimizer mylesMalanoski;
 	public FarLeft(){
 		mylesMalanoski= new Position_Optimizer();
+=======
+	double turned;
+	double inPosition;
+	boolean done;
+	double turned2;
+	public FarLeft(){
+>>>>>>> refs/remotes/Adambots-245/master
 	}
 	public void go(){
 		mylesMalanoski.leftClassCode(turnamountL, turnamountR, driveDistance, finishDistance);
