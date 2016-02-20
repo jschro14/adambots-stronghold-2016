@@ -5,14 +5,14 @@ import org.usfirst.frc.team245.robot.Sensors;
 
 import com.github.adambots.stronghold2016.drive.Drive;
 
-public class superRight {
+public class SuperRight {
 	static double turnamountL = 10,turnamountR = 10, driveDistance = 20, finishDistance = 20;
 	double turned;
 	double inPosition;
 	boolean done;
 	double turned2;
 	Position_Optimizer mylesMalanoski;
-	public superRight(){
+	public SuperRight(){
 		mylesMalanoski= new Position_Optimizer();
 	}
 	public void go(){
