@@ -11,11 +11,13 @@ public class superRight {
 	double inPosition;
 	boolean done;
 	double turned2;
-	
+	Position_Optimizer mylesMalanoski;
 	public superRight(){
+		mylesMalanoski= new Position_Optimizer();
 	}
 	public void go(){
-		turned  = Actuators.getLeftDriveMotor().getError();
+		mylesMalanoski.rightClassCode(turnamountL, turnamountR, driveDistance, finishDistance);
+		/**turned  = Actuators.getLeftDriveMotor().getError();
 		inPosition  = Actuators.getLeftDriveMotor().getError();
 		turned2  = Actuators.getLeftDriveMotor().getError();
 		turned  = Actuators.getLeftDriveMotor().getError();
@@ -39,7 +41,7 @@ public class superRight {
 			Drive.driveWithPID(finishDistance, finishDistance);
 		else{
 			Drive.drive(Actuators.STOP_MOTOR);
-		}
+		}**/
 	}
 
 

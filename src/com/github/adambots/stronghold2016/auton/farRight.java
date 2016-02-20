@@ -11,12 +11,14 @@ public class farRight {
 	double inPosition;
 	boolean done;
 	double turned2;
-	
+	Position_Optimizer mylesMalanoski;
 	public farRight() {
-
+		mylesMalanoski= new Position_Optimizer();
 	}
 
 	public void go() {
+		mylesMalanoski.rightClassCode(turnamountL, turnamountR, driveDistance, finishDistance);
+		/**
 		turned  = Actuators.getLeftDriveMotor().getError();
 		inPosition  = Actuators.getLeftDriveMotor().getError();
 		turned2  = Actuators.getLeftDriveMotor().getError();
@@ -41,6 +43,7 @@ public class farRight {
 			Drive.driveWithPID(finishDistance, finishDistance);
 		else{
 			Drive.drive(Actuators.STOP_MOTOR);
-		}
+			
+		}**/
 	}
 }

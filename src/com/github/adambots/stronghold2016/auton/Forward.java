@@ -7,18 +7,20 @@ import com.github.adambots.stronghold2016.drive.Drive;
 
 public class Forward {
 	static double finishDistance = 5;
-	double done;
-	public Forward(){
-
+	
+	Position_Optimizer mylesMalanoski;
+		public Forward(){
+			mylesMalanoski= new Position_Optimizer();
 	}
 	public void go(){
-		done = Actuators.getLeftDriveMotor().getError();
+		mylesMalanoski.forwardClassCode(finishDistance);
+		/**done = Actuators.getLeftDriveMotor().getError();
 		if(Math.abs(done) > 100)
 		Drive.driveWithPID(finishDistance, finishDistance);
 		if(Math.abs(done) < 100){
 			Drive.drive(Actuators.STOP_MOTOR);
 			
-		}
+		}**/
 			
 	}
 
