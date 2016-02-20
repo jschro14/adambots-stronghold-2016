@@ -5,13 +5,13 @@ import org.usfirst.frc.team245.robot.Sensors;
 
 import com.github.adambots.stronghold2016.drive.Drive;
 
-public class farLeft {
+public class FarLeft {
 	static double turnamountL = 0, turnamountR = 0, driveDistance =0,finishDistance = 0;
 	double turned;
 	double inPosition;
 	boolean done;
 	double turned2;
-	public farLeft(){
+	public FarLeft(){
 	}
 	public void go(){
 		turned  = Actuators.getLeftDriveMotor().getError();

@@ -8,10 +8,10 @@ import com.github.adambots.stronghold2016.drive.Drive;
 // saves and call upon different positioning code based on inputs from smart dash
 // :TODO implement smart dash into code
 // :TODO fine encoder values needed for each positioning code
-public class autonPosition {
+public class AutonPosition {
 	int start;
 	int end;
-	public autonPosition(int start,int end){
+	public AutonPosition(int start,int end){
 		this.start = start;
 		this.end = end;
 	}
@@ -19,25 +19,25 @@ public class autonPosition {
 		int type = end - start;
 		type = type+3;
 	ArrayList<Object> pos = new ArrayList <Object>();
-		pos.set(0,new superRight());
-		pos.set(1, new farRight());
-		pos.set(2,new right());
+		pos.set(0,new SuperRight());
+		pos.set(1, new FarRight());
+		pos.set(2,new Right());
 		pos.set(3, new Forward());
-		pos.set(4, new left());
-		pos.set(5 ,new farLeft());
+		pos.set(4, new Left());
+		pos.set(5 ,new FarLeft());
 		
 		if(type == 0)
-			((superRight) pos.get(0)).go();
+			((SuperRight) pos.get(0)).go();
 		else if (type == 1)
-			((farRight) pos.get(1)).go();
+			((FarRight) pos.get(1)).go();
 		else if (type == 2)
-			((right) pos.get(2)).go();
+			((Right) pos.get(2)).go();
 		else if (type == 3)
 			((Forward) pos.get(3)).go();
 		else if (type == 4)
-			((left) pos.get(4)).go();
+			((Left) pos.get(4)).go();
 		else if (type == 5)
-			((left) pos.get(5)).go();
+			((Left) pos.get(5)).go();
 		
 		
 		

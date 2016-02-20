@@ -5,14 +5,14 @@ import org.usfirst.frc.team245.robot.Sensors;
 
 import com.github.adambots.stronghold2016.drive.Drive;
 
-public class farRight {
+public class FarRight {
 	static double turnamountL = 10,turnamountR = 10, driveDistance = 20, finishDistance = 20;
 	double turned;
 	double inPosition;
 	boolean done;
 	double turned2;
 	
-	public farRight() {
+	public FarRight() {
 
 	}
 
