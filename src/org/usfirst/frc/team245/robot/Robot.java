@@ -160,6 +160,8 @@ public class Robot extends IterativeRobot {
 		}
 		
 		Arm.moveArm(Gamepad.secondary.getLeftY());
+		
+		Dash_Camera.cameras(Gamepad.secondary.getX());
 
 		// TODO: Check joystick mapping
 		// Scheduler.getInstance().run();
