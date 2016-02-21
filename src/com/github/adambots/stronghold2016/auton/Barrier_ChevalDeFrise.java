@@ -12,8 +12,9 @@ public class Barrier_ChevalDeFrise extends Barrier {
 						// we need to be to lower the barrier
 	boolean there; // are we at the distance
 	boolean down; // is the arm lowered
-	double crossingDistance; // distance required to complete the crossing from position
-								
+	double crossingDistance; // distance required to complete the crossing from
+								// position
+
 	boolean crossed; // are we crossed
 
 	public Barrier_ChevalDeFrise() {
@@ -30,7 +31,7 @@ public class Barrier_ChevalDeFrise extends Barrier {
 	}
 
 	public void go() {
-		
+
 		double leftError = Actuators.getLeftDriveMotor().getError();
 		leftError = Math.abs(leftError);
 		double rightError = Actuators.getRightDriveMotor().getError();
@@ -42,21 +43,21 @@ public class Barrier_ChevalDeFrise extends Barrier {
 		} else if (raised == false && down == false) {
 			Arm.moveArm(1);
 
-		} 
-		if (raised==true && there ==false) {
+		}
+		if (raised == true && there == false) {
 			Drive.driveWithPID(distance, distance);
-			
+
 		} else {
 			Drive.drive(Actuators.STOP_MOTOR);
 			there = true;
-		} 
+		}
 		if (Sensors.getArmMinLimitSwitch().get() == true) {
 			down = true;
 
 		} else if (there == true && down == false) {
 			Arm.moveArm(-1);
 
-		} 
+		}
 		leftError = Actuators.getLeftDriveMotor().getError();
 		leftError = Math.abs(leftError);
 		rightError = Actuators.getRightDriveMotor().getError();
@@ -64,9 +65,9 @@ public class Barrier_ChevalDeFrise extends Barrier {
 		crossed = rightError < 100 && leftError < 100;
 		if (down == true && crossed == false) {
 			Drive.driveWithPID(crossingDistance, crossingDistance);
-		} else  {
+		} else {
 			Drive.drive(Actuators.STOP_MOTOR);
-			crossed=true;
+			crossed = true;
 
 		}
 	}
