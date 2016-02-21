@@ -9,6 +9,7 @@ import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
 import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
 
 import com.github.adambots.stronghold2016.auton.AutonMain;
+import com.github.adambots.stronghold2016.auton.Barrier;
 
 import com.github.adambots.stronghold2016.auton.Forward;
 import com.github.adambots.stronghold2016.auton.FarLeft;
@@ -16,13 +17,8 @@ import com.github.adambots.stronghold2016.auton.FarRight;
 import com.github.adambots.stronghold2016.auton.Left;
 import com.github.adambots.stronghold2016.auton.Right;
 import com.github.adambots.stronghold2016.auton.SuperRight;
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/Adambots-245/master
-
-import com.github.adambots.stronghold2016.camera.AutoTarget;
-import com.github.adambots.stronghold2016.camera.Target;
+//import com.github.adambots.stronghold2016.camera.AutoTarget;
+//import com.github.adambots.stronghold2016.camera.Target;
 
 
 import com.github.adambots.stronghold2016.drive.Drive;
@@ -49,7 +45,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser chooser;
 	Compressor compressor;
 	Command autonomousBarrier;
-	SendableChooser Barrierchooser;
+	SendableChooser barrierChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -57,6 +53,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		chooser = new SendableChooser();
+		barrierChooser=new SendableChooser();
 		compressor = new Compressor();
 		chooser.addDefault("Forward", new Forward());
 		chooser.addObject("left two positions", new FarLeft());
@@ -76,11 +73,13 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 
-
-		chooser.addObject("ChevalDeFrise", new Barrier_ChevalDeFrise() );
-		chooser.addObject("Drawbridge", new Barrier_Drawbridge() );
-		chooser.addObject("RoughTerrain", new Barrier_RoughTerrain() );
-
+		
+		barrierChooser.addDefault("ChevalDeFrise", new Barrier_ChevalDeFrise() );
+		barrierChooser.addObject("Drawbridge", new Barrier_Drawbridge() );
+		barrierChooser.addObject("RoughTerrain", new Barrier_RoughTerrain() );
+		Barrier activeB= (Barrier) barrierChooser.getSelected();
+SmartDashboard.putData("Barrier mode",barrierChooser);
+SmartDashboard.putBoolean("barrier working", activeB.running());
 		Actuators.init();
 
 
