@@ -3,7 +3,6 @@ package org.usfirst.frc.team245.robot;
 
 import com.github.adambots.stronghold2016.arm.Arm;
 import com.github.adambots.stronghold2016.auton.AutonMain;
-import com.github.adambots.stronghold2016.auton.Barrier;
 import com.github.adambots.stronghold2016.auton.Barrier_ChevalDeFrise;
 import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
 import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
@@ -13,6 +12,8 @@ import com.github.adambots.stronghold2016.auton.Forward;
 import com.github.adambots.stronghold2016.auton.Left;
 import com.github.adambots.stronghold2016.auton.Right;
 import com.github.adambots.stronghold2016.auton.SuperRight;
+import com.github.adambots.stronghold2016.dash.Dash_Camera;
+import com.github.adambots.stronghold2016.dash.Dash_StringPotentiometer;
 //import com.github.adambots.stronghold2016.camera.AutoTarget;
 //import com.github.adambots.stronghold2016.camera.Target;
 import com.github.adambots.stronghold2016.drive.Drive;
@@ -57,8 +58,9 @@ public class Robot extends IterativeRobot {
 		// TODO: Uncomment inits
 		// Sensors.init();
 		// Shooter.init();
-		Drive.init();// does not have anything
+		
 		Actuators.init();
+		Drive.init();// does not have anything
 		// AutoTarget.init();//does not contain anything
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -67,10 +69,11 @@ public class Robot extends IterativeRobot {
 		barrierChooser.addDefault("ChevalDeFrise", new Barrier_ChevalDeFrise());
 		barrierChooser.addObject("Drawbridge", new Barrier_Drawbridge());
 		barrierChooser.addObject("RoughTerrain", new Barrier_RoughTerrain());
-		Barrier activeB = (Barrier) barrierChooser.getSelected();
+		//Barrier activeB = (Barrier) barrierChooser.getSelected();
 		SmartDashboard.putData("Barrier mode", barrierChooser);
-		SmartDashboard.putBoolean("barrier working", activeB.running());
-		Actuators.init();
+		//SmartDashboard.putBoolean("barrier working", activeB.running());
+		//Actuators.init();
+		Dash_Camera.camerasInit();
 
 	}
 
@@ -133,11 +136,12 @@ public class Robot extends IterativeRobot {
 		// if (autonomousCommand != null)
 		// autonomousCommand.cancel();
 		// Arm.init();
-		pastShift = false;
+		//pastShift = false;
 
 		// TODO:TEST CODE
 
 		Actuators.teleopInit();
+		
 	}
 
 	/**
@@ -145,7 +149,8 @@ public class Robot extends IterativeRobot {
 	 */
 
 	public void teleopPeriodic() {
-
+		Dash_StringPotentiometer.stringPotDash();
+		
 		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
 		if (Gamepad.primary.getLB() && pastShift == false) {
 			Drive.shift();
