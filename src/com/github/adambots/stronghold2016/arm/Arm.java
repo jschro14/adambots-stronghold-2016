@@ -8,6 +8,9 @@ import org.usfirst.frc.team245.robot.Sensors;
  *
  */
 public class Arm {
+	static double MAX_ARM_POSITION = 5;
+	static double MIN_ARM_POSITION = 3;
+	
 	/**
 	 * Initializes arm
 	 */
@@ -38,10 +41,14 @@ public class Arm {
 	 * @param speed
 	 */
 	public static void moveArm(double speed) {
-		if (Sensors.getArmMinLimitSwitch().get() == false && Sensors.getArmMaxLimitSwitch().get() == false) {
+
+		if (Actuators.getArmAngleMotor().getPosition() < MAX_ARM_POSITION && speed < 0) {
+			Actuators.getArmAngleMotor().set(speed);
+		} else if (Actuators.getArmAngleMotor().getPosition() > MIN_ARM_POSITION && speed > 0) {
 			Actuators.getArmAngleMotor().set(speed);
 		} else {
 			Actuators.getArmAngleMotor().set(Actuators.STOP_MOTOR);
+
 		}
 	}
 
