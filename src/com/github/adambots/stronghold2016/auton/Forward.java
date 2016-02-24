@@ -10,16 +10,22 @@ public class Forward {
 	double done;
 	public Forward(){
 
+	Position_Optimizer optimizer;
+
+	public Forward() {
+		optimizer = new Position_Optimizer();
 	}
-	public void go(){
-		done = Actuators.getLeftDriveMotor().getError();
-		if(Math.abs(done) > 100)
-		Drive.driveWithPID(finishDistance, finishDistance);
-		if(Math.abs(done) < 100){
-			Drive.drive(Actuators.STOP_MOTOR);
-			
-		}
-			
+
+	public void go() {
+		optimizer.forwardClassCode(finishDistance);
+		/**
+		 * done = Actuators.getLeftDriveMotor().getError(); if(Math.abs(done) >
+		 * 100) Drive.driveWithPID(finishDistance, finishDistance);
+		 * if(Math.abs(done) < 100){ Drive.drive(Actuators.STOP_MOTOR);
+		 * 
+		 * }
+		 **/
+
 	}
 
 }
