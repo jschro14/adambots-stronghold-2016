@@ -8,8 +8,6 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class Camera {
 	//HSV Filter constants
 	private static final int V_MAX = 255;
