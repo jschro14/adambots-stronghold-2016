@@ -6,16 +6,15 @@ import com.github.adambots.stronghold2016.auton.AutonMain;
 import com.github.adambots.stronghold2016.auton.Barrier_ChevalDeFrise;
 import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
 import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
-import com.github.adambots.stronghold2016.auton.FarLeft;
-import com.github.adambots.stronghold2016.auton.FarRight;
-import com.github.adambots.stronghold2016.auton.Forward;
-import com.github.adambots.stronghold2016.auton.Left;
-import com.github.adambots.stronghold2016.auton.Right;
-import com.github.adambots.stronghold2016.auton.SuperRight;
-import com.github.adambots.stronghold2016.dash.Dash_Camera;
-import com.github.adambots.stronghold2016.dash.Dash_StringPotentiometer;
-//import com.github.adambots.stronghold2016.camera.AutoTarget;
-//import com.github.adambots.stronghold2016.camera.Target;
+
+import com.github.adambots.stronghold2016.auton.*;
+
+
+
+import com.github.adambots.stronghold2016.camera.AutoTarget;
+import com.github.adambots.stronghold2016.camera.Target;
+
+
 import com.github.adambots.stronghold2016.drive.Drive;
 
 import edu.wpi.first.wpilibj.Compressor;

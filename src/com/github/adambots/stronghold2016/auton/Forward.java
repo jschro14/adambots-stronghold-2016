@@ -6,7 +6,9 @@ import org.usfirst.frc.team245.robot.Sensors;
 import com.github.adambots.stronghold2016.drive.Drive;
 
 public class Forward {
-	static double finishDistance = 5;
+	static double finishDistance = -60;
+	double done;
+	public Forward(){
 
 	Position_Optimizer optimizer;
 
