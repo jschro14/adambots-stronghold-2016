@@ -1,19 +1,29 @@
 package com.github.adambots.stronghold2016.auton;
 
 public class Barrier {
-	 char cat;
-	 int catNum;
-	public Barrier(){
-		
+	char category;
+	int categoryNum;
+	boolean running = false;
+
+	public Barrier() {
+		running = true;
 	}
-	public void go(){
-		
+
+	public void go() {
+
 	}
-public char getCat(){
-	return cat;
-}
-public int getCatNum(){
-	return catNum;
-	
-}
+
+	public char getCategory() {
+		return category;
+	}
+
+	public int getCategoryNum() {
+		return categoryNum;
+
+	}
+
+	public boolean running() {
+		return running;
+
+	}
 }
