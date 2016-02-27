@@ -6,15 +6,15 @@ import com.github.adambots.stronghold2016.auton.AutonMain;
 import com.github.adambots.stronghold2016.auton.Barrier_ChevalDeFrise;
 import com.github.adambots.stronghold2016.auton.Barrier_Drawbridge;
 import com.github.adambots.stronghold2016.auton.Barrier_RoughTerrain;
-
-import com.github.adambots.stronghold2016.auton.*;
-
-
-
-import com.github.adambots.stronghold2016.camera.AutoTarget;
-import com.github.adambots.stronghold2016.camera.Target;
-
-
+import com.github.adambots.stronghold2016.auton.Default;
+import com.github.adambots.stronghold2016.auton.FarLeft;
+import com.github.adambots.stronghold2016.auton.FarRight;
+import com.github.adambots.stronghold2016.auton.Forward;
+import com.github.adambots.stronghold2016.auton.Left;
+import com.github.adambots.stronghold2016.auton.Right;
+import com.github.adambots.stronghold2016.auton.SuperRight;
+import com.github.adambots.stronghold2016.dash.Dash_Camera;
+import com.github.adambots.stronghold2016.dash.Dash_StringPotentiometer;
 import com.github.adambots.stronghold2016.drive.Drive;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -49,11 +49,12 @@ public class Robot extends IterativeRobot {
 		barrierChooser = new SendableChooser();
 		compressor = new Compressor();
 		chooser.addDefault("Forward", new Forward());
-		chooser.addObject("left two positions", new FarLeft());
-		chooser.addObject("left one positions", new Left());
-		chooser.addObject("right one positions", new Right());
-		chooser.addObject("right two positions", new FarRight());
-		chooser.addObject("right three positions", new SuperRight());
+		chooser.addObject("Left two positions", new FarLeft());
+		chooser.addObject("Left one positions", new Left());
+		chooser.addObject("Right one positions", new Right());
+		chooser.addObject("Right two positions", new FarRight());
+		chooser.addObject("Right three positions", new SuperRight());
+		chooser.addDefault("Do nothing", new Default());
 		// TODO: Uncomment inits
 		// Sensors.init();
 		// Shooter.init();
@@ -64,8 +65,8 @@ public class Robot extends IterativeRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-
-		barrierChooser.addDefault("ChevalDeFrise", new Barrier_ChevalDeFrise());
+		barrierChooser.addDefault("Do nothing", new Default());
+		barrierChooser.addObject("ChevalDeFrise", new Barrier_ChevalDeFrise());
 		barrierChooser.addObject("Drawbridge", new Barrier_Drawbridge());
 		barrierChooser.addObject("RoughTerrain", new Barrier_RoughTerrain());
 		//Barrier activeB = (Barrier) barrierChooser.getSelected();
@@ -148,7 +149,7 @@ public class Robot extends IterativeRobot {
 	 */
 
 	public void teleopPeriodic() {
-		Dash_StringPotentiometer.stringPotDash();
+		Dash_StringPotentiometer.stringArmAngleMotorDash();
 		
 		Drive.drive(Gamepad.primary.getTriggers(), Gamepad.primary.getLeftX());
 		if (Gamepad.primary.getLB() && pastShift == false) {
